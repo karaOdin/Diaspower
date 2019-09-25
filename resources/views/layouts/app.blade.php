@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Diaspower | @yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
@@ -47,8 +47,7 @@
 
 </head>
 <body>
-@include('cookieConsent::index')
-    
+
         <!--====== LOADER =====-->
         <div class="loader"></div>
     
@@ -155,23 +154,28 @@
                                      
                         </li>
                        
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Hotels<span><i class="fa fa-angle-down"></i></span></a>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">logistic services<span><i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="hotels">Hotels</a></li>
-                               
-                            </ul>           
-                        </li>
-                       
-                       
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cars<span><i class="fa fa-angle-down"></i></span></a>
-                            <ul class="dropdown-menu">
+                                <li><a href="/hotels">Hotels</a></li>
                                 <li><a href="/cars">Cars</a></li>
+                                <li><a href="#">Machinery</a></li>
                                
                             </ul>           
                         </li>
                        
+                       
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Legal Department<span><i class="fa fa-angle-down"></i></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/#">Lawyer</a></li>
+                                <li><a href="/#">Notary</a></li>
+                                <li><a href="/#">The judicial officer</a></li>
+                                
+                               
+                            </ul>           
+                        </li>
+                       <li><a href="#">Real Estate</a></li>
                         <li class=""><a href="/about">A Propos</a>
-                        <li class=""><a href="/contact">Cpntact Nous</a>
+                        <li class=""><a href="/contact">Contactez Nous</a>
 
                         <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>
                     </ul>
@@ -181,7 +185,7 @@
         
         <div class="sidenav-content">
             <div id="mySidenav" class="sidenav" >
-                <h2 id="web-name"><span><i class="fa fa-plane"></i></span>Star Travel</h2>
+                <h2 id="web-name"><span><i class="fa fa-plane"></i></span>DiasPower</h2>
 
                 <div id="main-menu">
                     <div class="closebtn">
@@ -242,7 +246,7 @@
                                 <li><a href="hotels">Hotels</a></li>
                                 <li><a href="/cars">Cars</a></li>
                                 <li><a href="/about">A Prpos</a></li>
-                                <li><a href="/contact">Contact Nous</a></li>
+                                <li><a href="/contact">Contactez Nous</a></li>
                             </ul>
                         </div><!-- end columns -->
                         
