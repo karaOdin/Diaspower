@@ -143,16 +143,16 @@
                         
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side">
                             <div class="row">
-                            
+                                @foreach($cars as $car)
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block cr-grid-block">
                                     	<div class="main-img cr-grid-img">
                                         	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-1.jpg" class="img-responsive" alt="hotel-img" />
+                                    			<img src="/storage/{{$car->image}}" class="img-responsive" alt="hotel-img" />
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
+                                                    <li class="price">${{$car->pricePerDay}}<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     	</div><!-- end cr-grid-img -->
@@ -166,211 +166,23 @@
                                                 <span><i class="fa fa-star lightgrey"></i></span>
                                             </div><!-- end rating -->
                                             
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Luxury</a></h3>
-                                            <p class="block-minor">Bmw</p>
+                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">{{$car->type->type}}</a></h3>
+                                            <p class="block-minor">{{$car->modele}}</p>
                                             <ul class="list-unstyled list-inline car-features">
                                             	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
+                                                <li><span><i class="fa fa-briefcase"></i></span>{{$car->capacity}}</li>
                                                 <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
+                                                <li><span><i class="fa fa-tint"></i></span>{{$car->fuel->fuel}}</li>
                                                 <li><span><i class="fa fa-music"></i></span>Music</li>
                                             </ul>
                                             <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
+                                            	<a href="{{route('cars.show',$car->slug)}}" class="btn btn-orange btn-block btn-lg">View More</a>
                                             </div><!-- end grid-btn -->
                                          </div><!-- end cr-grid-info -->
                                     </div><!-- end cr-grid-block -->
                                 </div><!-- end columns -->
+                                @endforeach
                                 
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block cr-grid-block">
-                                    	<div class="main-img cr-grid-img">
-                                        	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-2.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end cr-grid-img -->
-                                        
-                                         <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Iconic</a></h3>
-                                            <p class="block-minor">Mercedese</p>
-                                            <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
-                                                <li><span><i class="fa fa-music"></i></span>Music</li>
-                                            </ul>
-                                            <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end cr-grid-info -->
-                                    </div><!-- end cr-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block cr-grid-block">
-                                    	<div class="main-img cr-grid-img">
-                                        	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-3.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-													<li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end cr-grid-img -->
-                                        
-                                         <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Iconic</a></h3>
-                                            <p class="block-minor">Mercedese</p>
-                                            <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
-                                                <li><span><i class="fa fa-music"></i></span>Music</li>
-                                            </ul>
-                                            <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end cr-grid-info -->
-                                    </div><!-- end cr-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block cr-grid-block">
-                                    	<div class="main-img cr-grid-img">
-                                        	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-4.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end cr-grid-img -->
-                                        
-                                         <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Luxury</a></h3>
-                                            <p class="block-minor">Bmw</p>
-                                            <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
-                                                <li><span><i class="fa fa-music"></i></span>Music</li>
-                                            </ul>
-                                            <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end cr-grid-info -->
-                                    </div><!-- end cr-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block cr-grid-block">
-                                    	<div class="main-img cr-grid-img">
-                                        	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-5.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end cr-grid-img -->
-                                        
-                                         <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Iconic</a></h3>
-                                            <p class="block-minor">Mercedese</p>
-                                            <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
-                                                <li><span><i class="fa fa-music"></i></span>Music</li>
-                                            </ul>
-                                            <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end cr-grid-info -->
-                                    </div><!-- end cr-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block cr-grid-block">
-                                    	<div class="main-img cr-grid-img">
-                                        	<a href="car-detail-left-sidebar.html">
-                                    			<img src="images/car-grid-6.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end cr-grid-img -->
-                                        
-                                         <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">Iconic</a></h3>
-                                            <p class="block-minor">Mercedese</p>
-                                            <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>Fuel</li>
-                                                <li><span><i class="fa fa-music"></i></span>Music</li>
-                                            </ul>
-                                            <div class="grid-btn">
-                                            	<a href="car-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end cr-grid-info -->
-                                    </div><!-- end cr-grid-block -->
-                                </div><!-- end columns -->
                                 
                             </div><!-- end row -->
                             
