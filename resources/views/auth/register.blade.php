@@ -48,8 +48,8 @@
                         <div class="col-sm-12">
                             
                             <div class="full-page-title">
-                                <h3 class="company-name"><span><i class="fa fa-plane"></i>Star</span>Travels</h3>
-                                <p>Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
+                                <h3 class="company-name"><span><i class="fa fa-plane"></i>Dias</span>Power</h3>
+                                <p style="color: #fff">Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
                             </div><!-- end full-page-title -->
                             
                             <div class="custom-form custom-form-fields">
@@ -94,7 +94,40 @@
                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
                                          <span><i class="fa fa-lock"></i></span>
                                     </div>
-                                    
+
+                                    <div class="form-group">
+                                         <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="{{ __('Phone') }}" autofocus>
+
+                                        @error('phone')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                         <span><i class="fa fa-phone"></i></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                         <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="phone" placeholder="{{ __('City') }}" autofocus>
+
+                                        @error('city')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                         <span><i class="fas fa-city"></i></span>
+                                    </div>                                    
+
+
+                                    <div class="form-group">
+                                         <input id="adress" type="text" class="form-control @error('adress') is-invalid @enderror" name="city" value="{{ old('adress') }}" required autocomplete="adress" placeholder="{{ __('Address') }}" autofocus>
+
+                                        @error('adress')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                         <span><i class="fa fa-map"></i></span>
+                                    </div> 
                                     <button class="btn btn-orange btn-block">{{ __('Register') }}</button>
                                 </form>
                                 
@@ -103,7 +136,7 @@
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             
-                            <p class="full-page-copyright">© 2017 StarTravel. All rights reserved.</p>
+                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')</p>
                         </div><!-- end columns -->
                     </div><!-- end row -->
                 </div><!-- end container -->

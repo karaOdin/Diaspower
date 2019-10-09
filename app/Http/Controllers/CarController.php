@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Car;
+use App\Agency;
 
 class CarController extends Controller
 {
@@ -14,7 +15,10 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::with('agency')->whereHas('agency', function ($query)
+            {
+                $query->where('isAproves',1);  
+            })->paginate(12);
 
         return view('cars',compact('cars'));
     }
@@ -50,7 +54,12 @@ class CarController extends Controller
     {
         $car = Car::where('slug',$slug)->first();
 
-        return view('car-details',compact('car'));
+        $sameAgencyCar = Car::where(
+                            'agency_id',$car->agency_id
+                            )->where('id','<>',$car->id)
+                            ->get();
+
+        return view('car-details',compact('car','sameAgencyCar'));
     }
 
     /**

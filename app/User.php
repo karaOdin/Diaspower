@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends \TCG\Voyager\Models\User
+class User extends   \TCG\Voyager\Models\User implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -15,13 +15,18 @@ class User extends \TCG\Voyager\Models\User
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public function agency()
+    {
+        return $this->hasOne(Agency::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone','adress','city'
     ];
 
     /**

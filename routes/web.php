@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/hotels', function () {
     return view('hotels');
 });
@@ -34,7 +35,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //cars section
 
@@ -45,8 +46,8 @@ Route::get('/cars/{slug}','CarController@show')->name('cars.show');
 
 
 
-Route::post('/reservation/','ReservationController@store')->name('reservation.store')->middleware('auth');
-Route::get('/reservation/','ReservationController@index')->name('reservation.index')->middleware('auth');
-Route::delete('/reservation/{id}','ReservationController@destroy')->name('reservation.destroy')->middleware('auth');
+Route::post('/reservation/','ReservationController@store')->name('reservation.store')->middleware('verified');
+Route::get('/reservation/','ReservationController@index')->name('reservation.index')->middleware('verified');
+Route::delete('/reservation/{id}','ReservationController@destroy')->name('reservation.destroy')->middleware('verified');
 
 

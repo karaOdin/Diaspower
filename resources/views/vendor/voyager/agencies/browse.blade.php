@@ -249,7 +249,6 @@
                                                 @endif
                                             </td>
                                         @endforeach
-                                        
                                         <td class="no-sort no-click" id="bread-actions">
                                             @foreach($actions as $action)
                                                 @if (!method_exists($action, 'massAction'))

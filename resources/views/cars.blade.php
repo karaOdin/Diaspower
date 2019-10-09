@@ -152,28 +152,20 @@
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">${{$car->pricePerDay}}<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
+                                                    <li class="price">DZD {{$car->pricePerDay}}<span class="divider">|</span><span class="pkg">{{$car->agency->name}}</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     	</div><!-- end cr-grid-img -->
                                         
                                          <div class="block-info cr-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
+                                         	
                                          	<h3 class="block-title"><a href="car-detail-left-sidebar.html">{{$car->type->type}}</a></h3>
                                             <p class="block-minor">{{$car->modele}}</p>
                                             <ul class="list-unstyled list-inline car-features">
-                                            	<li><span><i class="fa fa-user"></i></span>04</li>
-                                                <li><span><i class="fa fa-briefcase"></i></span>{{$car->capacity}}</li>
+                                            	<li><span><i class="fa fa-user"></i></span>{{$car->capacity}}</li>
                                                 <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                <li><span><i class="fa fa-tint"></i></span>{{$car->fuel->fuel}}</li>
                                                 <li><span><i class="fa fa-music"></i></span>Music</li>
+                                                <li><span><i class="fa fa-tint"></i></span>{{$car->fuel->fuel}}</li>
                                             </ul>
                                             <div class="grid-btn">
                                             	<a href="{{route('cars.show',$car->slug)}}" class="btn btn-orange btn-block btn-lg">View More</a>

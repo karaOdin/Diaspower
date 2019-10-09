@@ -283,7 +283,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright">
-                            <p>© 2019 <a href="#">Diaspower</a>. All rights reserved.</p>
+                            <p>© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')</p>
                         </div><!-- end columns -->
                         
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">

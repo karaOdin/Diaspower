@@ -17,6 +17,11 @@ class Reservation extends Model
     	return $this->belongsTo(Car::class);
     }
 
+    public function agency()
+    {
+    	return $this->belongsTo(Agency::class);
+    }
+
      public function city()
     {
     	return $this->belongsTo(City::class);

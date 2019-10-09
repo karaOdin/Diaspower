@@ -18,6 +18,9 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::where('user_id',Auth::user()->id)->get();
+
+       
+
         return view('reservations',compact('reservations'));
     }
 
@@ -51,6 +54,7 @@ class ReservationController extends Controller
         $reservation->user_id = Auth::user()->id;
         $reservation->car_id = $request->input('car_id');
         $reservation->city_id = $request->input('city_id');
+        $reservation->agency_id = $request->input('agency_id');
         $reservation->pickupDate = $request->input('pickupDate');
         $reservation->returnDate = $request->input('returnDate');
         $reservation->price = $request->input('pricePerDay') * $days;

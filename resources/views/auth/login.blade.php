@@ -49,11 +49,17 @@
                             
                             <div class="full-page-title">
                                 <h3 class="company-name"><span><i class="fa fa-plane"></i>Dias</span>Power</h3>
-                                <p>Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
+                                <p style="color: #fff">Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
                             </div><!-- end full-page-title -->
+                            
                             
                             <div class="custom-form custom-form-fields">
                                 <h3>Login</h3>
+                                @if(Session::has('warning'))
+                                <div class="alert alert-danger">
+                                  {{ Session::get('warning')}}
+                                </div>
+                                @endif
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     
@@ -99,7 +105,7 @@
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             
-                            <p class="full-page-copyright">© 2017 StarTravel. All rights reserved.</p>
+                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')</p>
                         </div><!-- end columns -->
                     </div><!-- end row -->
                 </div><!-- end container -->

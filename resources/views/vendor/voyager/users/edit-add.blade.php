@@ -99,14 +99,27 @@
                             </div>
 
                             <!-- My customization -->
-                            <div class="form-group" style="display:  {{!$dataTypeContent->verified ? 'none' : ''}}">
+                            <div class="form-group" >
                                 <label for="locale">Status</label>
-                                <select class="form-control" name="verified" >
-                                    <option value="{{$dataTypeContent->verified}}">{{$dataTypeContent->verified}}</option>
-                                    <option value="0">Disabled</option>
-                                    <option value="1">Enabled</option>
-                                </select>
+                                <input type="checkbox" name="verified" class="toggleswitch" {{$dataTypeContent->verified? 'checked' : ''}}>
                             </div>
+
+                            <div class="form-group">
+                                <label for="locale">Phone</label>
+                                <input type="text" name="phone" placeholder="phone" value="{{ $dataTypeContent->phone ?? '' }}" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="locale">Adress</label>
+                                <input type="text" name="adress" placeholder="adress" value="{{ $dataTypeContent->adress ?? '' }}" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="locale">City</label>
+                                <input type="text" name="city" placeholder="city" value="{{ $dataTypeContent->city ?? '' }}" class="form-control">
+                            </div>
+
+                            <input type="text" name="email_verified_at" value="{{ $dataTypeContent->email_verified_at ?? '' }}" hidden>
                             <!-- End My customization -->
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
   <!--========= PAGE-COVER ==========-->
         <section class="page-cover dashboard">
@@ -71,13 +72,25 @@
                                                     <tbody>
                                                     	@foreach($reservations as $reservation)
                                                         <tr>
-                                                            <td class="dash-list-icon booking-list-date"><div class="b-date"><h3>{{ date('d', strtotime($reservation->pickupDate))}}</h3><p>{{ date('M', strtotime($reservation->pickupDate))}}</p></div></td>
+
+                                                        	@php
+                                                        		$pickup = $reservation->pickupDate;
+														        $return = $reservation->returnDate;
+														        $datetime1 = new DateTime($pickup);
+														        $datetime2 = new DateTime($return);
+														        $interval = $datetime1->diff($datetime2);
+														        $days = $interval->format('%a');
+                                                        	@endphp
+                                                            <td class="dash-list-icon booking-list-date">
+                                                            	<img src="/storage/{{$reservation->car->image}}" style="width: 170px; height: auto">
+                                                            </td>
                                                             <td class="dash-list-text booking-list-detail">
                                                             	<h3>{{$reservation->car->modele}}</h3>
                                                                 <ul class="list-unstyled booking-info">
                                                                 	<li><span>Reservation Date:</span> {{ $reservation->pickupDate }}</li>
                                                                     <li><span>Return Date:</span> {{ $reservation->returnDate }}</li>
-                                                                    <li><span>Client:</span> Lisa Smith<span class="line">|</span>lisasmith@youremail.com<span class="line">|</span>125 254 2578</li>
+                                                                    <li><span>Duration:</span> {{$days}} days<span class="line">|</span>
+                                                                    	<span>Price:</span> {{$reservation->price}}<span class="line">|</span><span>Agency:</span> {{$reservation->agency->name}}</li>
                                                                 </ul>
                                                             </td>
                                                             <td class="dash-list-btn">
