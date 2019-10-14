@@ -99,11 +99,12 @@
                             </div>
 
                             <!-- My customization -->
+                            @if(Auth::user()->role_id == 1)
                             <div class="form-group" >
                                 <label for="locale">Status</label>
                                 <input type="checkbox" name="verified" class="toggleswitch" {{$dataTypeContent->verified? 'checked' : ''}}>
                             </div>
-
+                            @endif
                             <div class="form-group">
                                 <label for="locale">Phone</label>
                                 <input type="text" name="phone" placeholder="phone" value="{{ $dataTypeContent->phone ?? '' }}" class="form-control">

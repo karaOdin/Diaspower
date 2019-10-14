@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,15 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    protected function redirectTo()
+    {
+        if (Auth::user()->role_id == 1) {
+            return '/admin' ;
+        }
+        return '/';
+    }
+
 
     /**
      * Where to redirect users after registration.

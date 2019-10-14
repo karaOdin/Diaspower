@@ -45,6 +45,14 @@
         <!-- Magnific Gallery -->
         <link rel="stylesheet" href="/css/magnific-popup.css">
 
+
+        <!--Toastr css-->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+        <!--Toastr js-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
 </head>
 <body>
 
@@ -90,13 +98,13 @@
                                 <li><a href="{{route('login')}}"><span><i class="fa fa-lock"></i></span>Login</a></li>
                                 <li><a href="{{route('register')}}"><span><i class="fa fa-plus"></i></span>Sign Up</a></li>
                                 @else
+                                <li><a href="{{route('profile.show')}}"><span><i class="fa fa-user"></i></span>Profile</a></li>
                                  <li>
                                   <a href="{{ route('logout') }}"
                                       onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                          <i class="fa fa-sign-out"></i> Logout
                                   </a>
-
                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                      {{ csrf_field() }}
                                   </form>
@@ -150,16 +158,19 @@
                 
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right navbar-search-link">
-                        <li class=" active"><a href="/">Accueil</a>
+                        <li class="{{ request()->is('/') ? 'active' : ''}}" ><a href="/">Accueil</a>
                                      
                         </li>
                        
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">logistic services<span><i class="fa fa-angle-down"></i></span></a>
+                        <li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">logistic services<span><i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/hotels">Hotels</a></li>
+                                <li class="{{ request()->is('/hotels') ? 'active' : ''}}"><a href="/hotels">Hotels</a></li>
                                 <li><a href="/cars">Cars</a></li>
                                 <li><a href="#">Machinery</a></li>
-                               
+                                @guest
+                                @else
+                                <li><a href="{{route('profile.show', $user = Auth::user())}}">Profile</a></li>
+                                @endguest
                             </ul>           
                         </li>
                        

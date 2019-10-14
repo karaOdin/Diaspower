@@ -6,10 +6,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">My Account</h1>
+                    	<h1 class="page-title">My Reservations</h1>
                         <ul class="breadcrumb">
                             <li><a href="#">Home</a></li>
-                            <li class="active">My Account</li>
+                            <li class="active">My Reservations</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -34,39 +34,15 @@
                                 
                                 	<div class="col-xs-12 col-sm-2 col-md-2 dashboard-nav">
                                 		<ul class="nav nav-tabs nav-stacked text-center">
-                                    		<li><a href="dashboard.html"><span><i class="fa fa-cogs"></i></span>Dashboard</a></li>
-                                        	<li><a href="user-profile.html"><span><i class="fa fa-user"></i></span>Profile</a></li>
-                                            <li  class="active"><a href="#"><span><i class="fa fa-briefcase"></i></span>Booking</a></li>
-                                            <li><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>Wishlist</a></li>
-                                            <li><a href="cards.html"><span><i class="fa fa-credit-card"></i></span>My Cards</a></li>
+                                    		<li><a href="{{route('profile.show')}}"><span><i class="fa fa-user"></i></span>Profile</a></li>
+                                            <li class="active"><a href="{{route('reservation.index')}}"><span><i class="fa fa-briefcase"></i></span>My Reservations</a></li>
                                         </ul>
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-10 col-md-10 dashboard-content booking-trips">
                                 		<h2 class="dash-content-title">Trips You have Booked!</h2>
                                         <div class="dashboard-listing booking-listing">
-                                        	<div class="dash-listing-heading">
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="radio01" name="radio" checked/>
-                                                    <label for="radio01"><span></span>All Types</label>
-                                                </div><!-- end custom-radio -->
-                                                    
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="radio02" name="radio" />
-                                                    <label for="radio02"><span></span>Hotels</label>
-                                                </div><!-- end custom-radio -->
-                                                
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="radio03" name="radio" />
-                                                    <label for="radio03"><span></span>Flights</label>
-                                                </div><!-- end custom-radio -->
-                                                
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="radio04" name="radio" />
-                                                    <label for="radio04"><span></span>Cars</label>
-                                                </div><!-- end custom-radio -->
-                                            </div>
-                                            
+                                        	                                            
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <tbody>

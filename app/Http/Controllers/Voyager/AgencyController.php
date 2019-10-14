@@ -15,7 +15,8 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 use Auth;
-class ReservationController extends VoyagerBaseController
+use App\City;
+class AgencyController extends VoyagerBaseController
 {
        public function __construct()
     {
@@ -225,11 +226,13 @@ class ReservationController extends VoyagerBaseController
 
         $view = 'voyager::bread.read';
 
+        $cities = City::all();
+
         if (view()->exists("voyager::$slug.read")) {
             $view = "voyager::$slug.read";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','cities'));
     }
 
     //***************************************
@@ -281,11 +284,13 @@ class ReservationController extends VoyagerBaseController
 
         $view = 'voyager::bread.edit-add';
 
+        $cities = City::all();
+
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','cities'));
     }
 
     // POST BR(E)AD
@@ -367,7 +372,8 @@ class ReservationController extends VoyagerBaseController
             $view = "voyager::$slug.edit-add";
         }
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        $cities = City::all();
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','cities'));
     }
 
     /**

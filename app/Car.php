@@ -3,10 +3,36 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Builder;
+use Auth;
 
 class Car extends Model
 {
+	/*
+	protected static function boot()
+	{
+		
+	    parent::boot();
+	    if (Auth::check() && Auth::user()->role_id ==3)
+	    {
+
+		    static::addGlobalScope('user_id', function (Builder $builder) {
+		    		$builder->where('user_id','=', Auth::user()->id);
+		    	
+		        
+		    });
+		}
+	}*/
+
+
+	public function scopeCar($query)
+	{
+		if (Auth::user()->role_id == 3) 
+		{
+			return $query->where('user_id',Auth::user()->id);
+		}
+	}
+
 	public function reservations()
 	{
 		return $this->hasMany(Reservation::class);

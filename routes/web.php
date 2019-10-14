@@ -1,5 +1,6 @@
 <?php
-
+use App\Slider;
+use App\Car;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$sliders = Slider::all();
+	$cars = Car::latest()->take(3)->get();
+    return view('welcome',compact('sliders','cars'));
 });
 
 
@@ -50,4 +53,7 @@ Route::post('/reservation/','ReservationController@store')->name('reservation.st
 Route::get('/reservation/','ReservationController@index')->name('reservation.index')->middleware('verified');
 Route::delete('/reservation/{id}','ReservationController@destroy')->name('reservation.destroy')->middleware('verified');
 
+// User routes
 
+Route::get('/profile','UserController@show')->name('profile.show');
+Route::patch('/profile/{id}','UserController@edit')->name('profile.edit');

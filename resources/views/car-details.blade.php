@@ -1,6 +1,33 @@
 @extends('layouts.app')
 @section('content')
+	<style type="text/css">
+		.invalid-feedback
+		{
+			color: red
+		}
+	</style>
 
+	@if(session()->has('message'))
+      <script>
+
+
+            var type = "{{Session::get('alert-type','success')}}"
+            if(type == 'success')
+            {
+            	toastr.success("{{ Session::get('message') }}");
+            }
+            else
+            {
+            	@if(count($errors) > 0)
+			        @foreach($errors->all() as $error)
+			            toastr.error("{{ $error }}");
+			        @endforeach
+			    @endif
+            	toastr.error("{{Session::get('message')}}");
+            }
+      </script>
+    @endif
+    
 <!-- Date-Picker Stylesheet -->
         <link rel="stylesheet" href="/css/datepicker.css">
         
@@ -201,10 +228,22 @@
                                         
                                         <div class="form-group">
                                     		<input type="date" class="form-control " name="pickupDate" placeholder="Pick-Up Date" required/>                                       		<i class="fa fa-calendar"></i>
+                                    		@error('pickupDate')
+		                                            <span class="invalid-feedback" role="alert">
+		                                                <strong>{{ $message }}</strong>
+		                                            </span>
+		                                 	@enderror
                                         </div>
                                         
                                         <div class="form-group">
                                     		<input type="date" class="form-control " name="returnDate" placeholder="Drop-Off Date" required/>                                       		<i class="fa fa-calendar"></i>
+
+                                    		@error('returnDate')
+		                                            <span class="invalid-feedback" role="alert">
+		                                                <strong>{{ $message }}</strong>
+		                                            </span>
+		                                 	@enderror
+
                                         </div>
 
                                       

@@ -38,20 +38,11 @@
                                                 <ul class="list-unstyled">
                                                     <li class="custom-check"><input type="checkbox" id="check01" name="checkbox"/>
                                                     <label for="check01"><span><i class="fa fa-check"></i></span>All</label></li>
-                                                    <li class="custom-check"><input type="checkbox" id="check02" name="checkbox"/>
-                                                    <label for="check02"><span><i class="fa fa-check"></i></span>Compact</label></li>	
-                                                    <li class="custom-check"><input type="checkbox" id="check03" name="checkbox"/>
-                                                    <label for="check03"><span><i class="fa fa-check"></i></span>Economy</label></li>
-                                                    <li class="custom-check"><input type="checkbox" id="check04" name="checkbox"/>
-                                                    <label for="check04"><span><i class="fa fa-check"></i></span>Full Size</label></li>
-                                                    <li class="custom-check"><input type="checkbox" id="check05" name="checkbox"/>
-                                                    <label for="check05"><span><i class="fa fa-check"></i></span>Luxury</label></li>
-                                                    <li class="custom-check"><input type="checkbox" id="check06" name="checkbox"/>
-                                                    <label for="check06"><span><i class="fa fa-check"></i></span>Mini Car</label></li>	
-                                                    <li class="custom-check"><input type="checkbox" id="check07" name="checkbox"/>
-                                                    <label for="check07"><span><i class="fa fa-check"></i></span>Special</label></li>				
-                                                    <li class="custom-check"><input type="checkbox" id="check08" name="checkbox"/>
-                                                    <label for="check08"><span><i class="fa fa-check"></i></span>Van</label></li>
+                                                    
+                                                    @foreach($types as $type)
+                                                    <li class="custom-check"><input type="checkbox" id="check0{{$type->id + 1}}" value="{{$type->id}}" name="checkbox"/>
+                                                    <label for="check02"><span><i class="fa fa-check"></i></span>{{$type->type}} ({{$type->cars->count()}})</label></li>	
+                                                    @endforeach
                                                 </ul>
                                             </div><!-- end panel-body -->
                                         </div><!-- end panel-collapse -->
@@ -256,6 +247,16 @@
                 </div><!-- end row -->
             </div><!-- end container -->
         </section><!-- end newsletter-1 -->
-        
-
+        <script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+    </script> 
+        <script type="text/javascript">
+            $(document).ready(function() { 
+            
+                $('check01').click(function () {
+                    alert('hardddd');
+                });
+            });
+            
+        </script>
 @endsection

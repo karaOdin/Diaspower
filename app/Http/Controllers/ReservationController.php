@@ -7,7 +7,7 @@ use App\Reservation;
 use DateTime;
 use Auth;
 use DB;
-
+use Validator;
 class ReservationController extends Controller
 {
     /**
@@ -42,6 +42,12 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+         $validator =  Validator::make($request->all(), array(
+         'pickupDate'=>'required|date|after:tomorrow',
+         'returnDate' =>'required|date|after:pickupDate',
+         
+        ));
+
         $pickup = $request->input('pickupDate');
         $return = $request->input('returnDate');
         $datetime1 = new DateTime($pickup);
@@ -60,7 +66,24 @@ class ReservationController extends Controller
         $reservation->price = $request->input('pricePerDay') * $days;
         $reservation->save();
 
-        return redirect()->back();
+        if($validator->fails()) {
+            $notification = array(
+                                'message' =>'your reservation wasnt added please fi the errors' ,
+                                'alert-type' =>'error' 
+                             );
+            
+            return Redirect()->back()->withErrors($validator)->with($notification);
+        }
+        else{
+            $notification = array(
+                                'message' =>'your reservation  added successefully' ,
+                                'alert-type' =>'success' 
+                             );
+             return redirect()->back()->with($notification);
+        }
+
+        
+
 
        
 
