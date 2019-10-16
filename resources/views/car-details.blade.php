@@ -80,8 +80,12 @@
                                 
                                 <ul class="list-unstyled features tour-features">
                                 	<li><div class="f-icon"><i class="fa fa-wheelchair"></i></div><div class="f-text"><p class="f-heading">Seats</p><p class="f-data">{{$car->capacity}}</p></div></li>
-                                    <li><div class="f-icon"><i class="fa fa-calendar"></i></div><div class="f-text"><p class="f-heading">Duration</p><p class="f-data">7 DAYS</p></div></li>
-                                    <li><div class="f-icon"><i class="fa fa-clock-o"></i></div><div class="f-text"><p class="f-heading">Discount</p><p class="f-data">10% OFF</p></div></li>
+                                	@if($car->max)
+                                    <li><div class="f-icon"><i class="fa fa-calendar"></i></div><div class="f-text"><p class="f-heading">Duration</p><p class="f-data">{{$car->max_days}}</p></div></li>
+                                    @endif
+                                    @if($car->discount)
+                                    <li><div class="f-icon"><i class="fa fa-clock-o"></i></div><div class="f-text"><p class="f-heading">Discount</p><p class="f-data">{{$car->discount_value}}% OFF</p></div></li>
+                                    @endif
                                 </ul>
                             </div>  <!-- end detail-slider -->
 
@@ -116,12 +120,11 @@
                                             <div class="col-sm-8 col-md-8 tab-text">
                                         		<h3>Features</h3>
                                                 <ul class="list-unstyled list-inline car-features">
-                                                    <li><span><i class="fa fa-user"></i></span>04</li>
-                                                    <li><span><i class="fa fa-briefcase"></i></span>04</li>
-                                                    <li><span><i class="fa fa-map-marker"></i></span>Gps</li>
-                                                    <li><span><i class="fa fa-tint"></i></span>Fuel</li>
+                                                    <li><span><i class="fa fa-user"></i></span>{{$car->capacity}}</li>
+                                                    <li style="display: {{$car->gps ? '' : 'none'}}"><span><i class="fa fa-map-marker" ></i></span>Gps</li>
                                                     <li><span><i class="fa fa-music"></i></span>Music</li>
-                                                    <li><span><i class="fa fa-tv"></i></span>TV</li>
+                                                    <li><span><i class="fa fa-tint"></i></span>{{$car->fuel->fuel}}</li>
+
                                                 </ul>
                                             </div><!-- end columns -->
                                         </div><!-- end row -->
@@ -154,7 +157,7 @@
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">{{$agencyCar->pricePerDay}}<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
+                                                    <li class="price">{{ $agencyCar->pricePerDay}}<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
                                                     <li class="rating">
                                                         <span><i class="fa fa-star orange"></i></span>
                                                         <span><i class="fa fa-star orange"></i></span>
@@ -192,7 +195,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 side-bar right-side-bar">
                             
                             <div class="side-bar-block booking-form-block">
-                            	<h2 class="selected-price">DZD {{$car->pricePerDay}} <span>{{$car->make->make}}</span></h2>
+                            	<h2 class="selected-price">DZD {{$car->discount ? $car->pricePerDay - ($car->pricePerDay * $car->discount_value)/100 : $car->pricePerDay}} <span>{{$car->make->make}}</span></h2>
                             
                             	<div class="booking-form">
                                 	<h3>Book A Car</h3>
@@ -220,7 +223,7 @@
 
                                     		<input type="text" name="city_id" value="1"  hidden="" />
 
-                                    		<input type="text" name="pricePerDay" value="{{$car->pricePerDay}}"  hidden />
+                                    		<input type="text" name="pricePerDay" value="{{$car->discount ? $car->pricePerDay - ($car->pricePerDay * $car->discount_value)/100 : $car->pricePerDay}}"  hidden />
 
                                     		<input type="text" name="agency_id" value="{{$car->agency_id}}"  hidden />
 

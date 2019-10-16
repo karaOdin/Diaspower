@@ -18,7 +18,8 @@ class CarController extends Controller
     {
         $cars = Car::with('agency')->whereHas('agency', function ($query)
             {
-                $query->where('isAproves',1);  
+                $query->where('isAproves',1)
+                ->where('status',1);  
             })->paginate(12);
         $types = Type::all();
 
@@ -54,7 +55,7 @@ class CarController extends Controller
      */
     public function show($slug)
     {
-        $car = Car::where('slug',$slug)->first();
+        $car = Car::where('slug',$slug)->firstOrFail();
 
         $sameAgencyCar = Car::where(
                             'agency_id',$car->agency_id

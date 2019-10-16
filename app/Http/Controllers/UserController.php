@@ -73,7 +73,7 @@ class UserController extends Controller
          'city' => ['required','min:3'],
         ));
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->adress = $request->input('adress');

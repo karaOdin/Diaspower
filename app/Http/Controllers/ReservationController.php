@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reservation;
+use App\Car;
+use App\User;
 use DateTime;
 use Auth;
 use DB;
@@ -48,6 +50,14 @@ class ReservationController extends Controller
          
         ));
 
+
+         $reservationCheck = Reservation::where('car_id',$request->input('car_id'))
+                                        ->where('user_id',Auth::user()->id)
+                                        ->where('isCompleted','=','0')
+                                        ->first();
+
+         //reservation start
+
         $pickup = $request->input('pickupDate');
         $return = $request->input('returnDate');
         $datetime1 = new DateTime($pickup);
@@ -56,31 +66,42 @@ class ReservationController extends Controller
         $days = $interval->format('%a');
 
 
-        $reservation = new Reservation();
-        $reservation->user_id = Auth::user()->id;
-        $reservation->car_id = $request->input('car_id');
-        $reservation->city_id = $request->input('city_id');
-        $reservation->agency_id = $request->input('agency_id');
-        $reservation->pickupDate = $request->input('pickupDate');
-        $reservation->returnDate = $request->input('returnDate');
-        $reservation->price = $request->input('pricePerDay') * $days;
-        $reservation->save();
 
-        if($validator->fails()) {
-            $notification = array(
-                                'message' =>'your reservation wasnt added please fi the errors' ,
-                                'alert-type' =>'error' 
-                             );
-            
-            return Redirect()->back()->withErrors($validator)->with($notification);
+        if ($reservationCheck) {
+            $notification = array('message' => 'You are already reserved this car',
+                                   'alert-type' => 'error' 
+                                 );
+                 return redirect()->back()->with($notification);
         }
         else{
-            $notification = array(
-                                'message' =>'your reservation  added successefully' ,
-                                'alert-type' =>'success' 
-                             );
-             return redirect()->back()->with($notification);
+             if($validator->fails()) {
+                $notification = array(
+                                    'message' =>'your reservation wasnt added please fi the errors' ,
+                                    'alert-type' =>'error' 
+                                 );
+                
+                return Redirect()->back()->withErrors($validator)->with($notification);
+            }
+            else{
+                $reservation = new Reservation();
+                $reservation->user_id = Auth::user()->id;
+                $reservation->car_id = $request->input('car_id');
+                $reservation->city_id = $request->input('city_id');
+                $reservation->agency_id = $request->input('agency_id');
+                $reservation->pickupDate = $request->input('pickupDate');
+                $reservation->returnDate = $request->input('returnDate');
+                $reservation->price = $request->input('pricePerDay') * $days;
+                $reservation->save();
+                $notification = array(
+                                    'message' =>'your reservation  added successefully' ,
+                                    'alert-type' =>'success' 
+                                 );
+                 return redirect()->back()->with($notification);
+            }
+
         }
+
+       
 
         
 
@@ -132,7 +153,10 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         DB::table('reservations')->where('id', $id)->delete();
-
-        return redirect()->back();
+         $notification =  array(
+                            'message' => 'Your reservation has been deleted succefully' ,
+                            'alert-type' => 'success' 
+                        );
+        return redirect()->back()->with($notification);
     }
 }

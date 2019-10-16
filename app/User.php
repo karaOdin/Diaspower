@@ -13,7 +13,7 @@ class User extends   \TCG\Voyager\Models\User implements MustVerifyEmail
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasOne(Reservation::class);
     }
 
     public function agency()

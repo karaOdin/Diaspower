@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(session()->has('message'))
+      <script>
+
+
+            var type = "{{Session::get('alert-type','success')}}"
+            toastr.success("{{ Session::get('message') }}");
+          
+      </script>
+    @endif
   <!--========= PAGE-COVER ==========-->
         <section class="page-cover dashboard">
             <div class="container">

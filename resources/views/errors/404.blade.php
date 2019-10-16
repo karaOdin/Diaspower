@@ -11,18 +11,18 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
         
         <!-- Bootstrap Stylesheet -->	
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         
         <!-- Font Awesome Stylesheet -->
-        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
             
         <!-- Custom Stylesheets -->	
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" id="cpswitch" href="css/orange.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" id="cpswitch" href="/css/orange.css">
+        <link rel="stylesheet" href="/css/responsive.css">
         
         <!-- Color Panel -->
-        <link rel="stylesheet" href="css/jquery.colorpanel.css">
+        <link rel="stylesheet" href="/css/jquery.colorpanel.css">
     </head>
     
     
@@ -64,7 +64,7 @@
                                         <h2>Something went wrong !</h2>
                                         <p>We are sorry but it appears that the page you are looking for could not be found. We are working on it and we will get it fixed as soon as possible.</p>
                                         <p> You can go back to the Main Page by clicking the button.</p>
-                                        <a href="#" class="btn btn-orange">Go Back</a>
+                                        <a href="{{ url()->previous() }}" class="btn btn-orange">Go Back</a>
                                     </div>
                                 </div>
                             </div><!-- end columns -->
@@ -76,10 +76,10 @@
 
 
         <!-- Page Scripts Starts -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.colorpanel.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/custom-navigation.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery.colorpanel.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/custom-navigation.js"></script>
         <!-- Page Scripts Ends -->
     </body>
 </html>

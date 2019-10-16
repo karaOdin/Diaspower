@@ -195,6 +195,9 @@ return [
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
         'css/voyager.css',
+        
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css',
+        '/css/font-awesome.min.css',
     ],
 
     'additional_js' => [
