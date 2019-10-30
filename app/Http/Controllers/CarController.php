@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Car as CarResource;
 use Illuminate\Http\Request;
 use App\Car;
 use App\Agency;
@@ -24,6 +25,11 @@ class CarController extends Controller
         $types = Type::all();
 
         return view('cars',compact('cars','types'));
+    }
+
+    public function indexThird()
+    {
+        return new CarResource(Car::find(3));
     }
 
     /**

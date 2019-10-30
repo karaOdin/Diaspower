@@ -1,0 +1,49 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    users: [User!]! @all
+    user(id: ID @eq): User @find
+    cities : [City!]! @all
+    city(id: ID @eq): City @find
+    cars : [Car!]! @all
+    car(slug: String @eq): Car @find
+	agencies : [Agency!]! @all
+    agency(id: ID @eq): Agency @find
+
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type City {
+    id: ID!
+    city: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type Car {
+    id: ID!
+    modele: String!
+    status: Boolean
+    created_at: DateTime!
+    updated_at: DateTime!
+    agency: Agency! @belongsTo
+}
+
+type Agency {
+    id: ID!
+    name: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    cars: [Car] @hasMany
+}

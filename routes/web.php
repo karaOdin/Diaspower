@@ -1,6 +1,12 @@
 <?php
 use App\Slider;
 use App\Car;
+use App\FaqCategory;
+use App\Faq;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
+use Illuminate\Http\Request;
+use App\Exceptions\Handler;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,8 +34,53 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('/faq', function () {
+	$faqs = FaqCategory::with('faqs')->get();
+    return view('faq',compact('faqs'));
+});
+
+Route::post('/faq', function(Request $request)
+{
+	try {
+
+		Mail::send(new ContactMail($request));
+    	$notification = array(
+                                'message' =>'Your mail has been sent succesfully' ,
+                                'alert-type' =>'success' 
+                             );
+
+	} catch (\Exception $e) {
+		$notification = array(
+                                'message' =>'Your email never been sent',
+                                'alert-type' =>'error' 
+                             );
+	}
+   
+    return redirect()->back()->with($notification);
+});
+
+
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::post('/contact', function(Request $request) {
+	try {
+
+		Mail::send(new ContactMail($request));
+    	$notification = array(
+                                'message' =>'Your mail has been sent succesfully' ,
+                                'alert-type' =>'success' 
+                             );
+
+	} catch (\Exception $e) {
+		$notification = array(
+                                'message' =>'Your email never been sent',
+                                'alert-type' =>'error' 
+                             );
+	}
+   
+    return redirect()->back()->with($notification);
 });
 
 Route::group(['prefix' => 'admin'], function () {

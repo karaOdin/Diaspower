@@ -1,5 +1,23 @@
 @extends('layouts.app')
 @section('content')
+
+
+    @if(session()->has('message'))
+      <script>
+
+
+            var type = "{{Session::get('alert-type','success')}}"
+            if(type == 'success')
+            {
+                toastr.success("{{ Session::get('message') }}");
+            }
+            else
+            {
+                
+                toastr.error("{{Session::get('message')}}");
+            }
+      </script>
+    @endif
         <!--===== INNERPAGE-WRAPPER ====-->
         <section class="innerpage-wrapper">
         	<div id="contact-us-2">
@@ -54,46 +72,47 @@
                                         
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 contact-form-2-text">
-                                                <p><strong>Important:</strong> Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper. Veniam delectus ei vis est atqui timeam mnesarchum at.</p>
+                                                <p><strong>Important:</strong> {{setting('contact.admin_contact_tip')}}.</p>
                                                 <ul class="social-links list-inline list-unstyled">
-                                                    <li><a href="#"><span><i class="fa fa-facebook"></i></span></a></li>
-                                                    <li><a href="#"><span><i class="fa fa-twitter"></i></span></a></li>
-                                                    <li><a href="#"><span><i class="fa fa-google-plus"></i></span></a></li>
-                                                    <li><a href="#"><span><i class="fa fa-pinterest-p"></i></span></a></li>
-                                                    <li><a href="#"><span><i class="fa fa-instagram"></i></span></a></li>
+                                                    <li><a href="{{setting('social-media.admin_facebook')}}"><span><i class="fa fa-facebook"></i></span></a></li>
+                                                    <li><a href="{{setting('social-media.admin_twitter')}}"><span><i class="fa fa-twitter"></i></span></a></li>
+                                                    <li><a href="{{setting('social-media.admin_google')}}"><span><i class="fa fa-google-plus"></i></span></a></li>
+                                                    <li><a href="{{setting('social-media.admin_pinterest')}}"><span><i class="fa fa-pinterest-p"></i></span></a></li>
+                                                    <li><a href="{{setting('social-media.admin_instagram')}}"><span><i class="fa fa-instagram"></i></span></a></li>
                                                 </ul>
                                             
                                             </div>
                                             
                                             <div class="col-xs-12 col-sm-6">
                                             
-                                                <form>
+                                                <form  action="{{url('contact')}}" method="post"  enctype="multipart/form-data">
+                                                     {{ csrf_field() }}
                                                     
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-6">
                                                             <div class="form-group">
-                                                                 <input type="text" class="form-control" placeholder="Name"  required/>
+                                                                 <input type="text" class="form-control" name="name" placeholder="Name"  required/>
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-xs-12 col-sm-6">
                                                             <div class="form-group">
-                                                                 <input type="email" class="form-control" placeholder="Email"  required/>
+                                                                 <input type="email" class="form-control" name="email" placeholder="Email"  required/>
                                                             </div>
                                                         </div>
                                                     
                                                     </div>
                                                     
                                                     <div class="form-group">
-                                                         <input type="text" class="form-control" placeholder="Subject"  required/>
+                                                         <input type="text" class="form-control" name="subject" placeholder="Subject"  required/>
                                                     </div>
                     
                                                     <div class="form-group">
-                                                        <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                                        <textarea class="form-control" rows="4" name="message" placeholder="Your Message"></textarea>
                                                     </div>
                                                     
                                                     <div class="text-center">
-                                                        <button class="btn btn-orange">Envoyer</button>
+                                                        <button class="btn btn-orange">Send</button>
                                                     </div>
                                                 </form>
                                             

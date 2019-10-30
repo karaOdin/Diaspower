@@ -7,51 +7,45 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Diaspower | @yield('title')</title>
+    <title>{{setting('site.title')}} | @yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{asset('js/app.js')}}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-        <link href="{{asset('css/app.css')}}"></link>
+        @switch(request())
 
-     <!-- Google Fonts -->  
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-        
-        <!-- Bootstrap Stylesheet -->   
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
-        
-        <!-- Font Awesome Stylesheet -->
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
-            
-        <!-- Custom Stylesheets --> 
-        <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
-        <link rel="stylesheet" id="cpswitch" href="/css/orange.css">
-        <link rel="stylesheet" href="/css/responsive.css">
-    
-        <!-- Owl Carousel Stylesheet -->
-        <link rel="stylesheet" href="/css/owl.carousel.css">
-        <link rel="stylesheet" href="/css/owl.theme.css">
-        
-        <!-- Flex Slider Stylesheet -->
-        <link rel="stylesheet" href="/css/flexslider.css" type="text/css" />
-        
-        <!--Date-Picker Stylesheet-->
-        <link rel="stylesheet" href="/css/datepicker.css">
-        
-        <!-- Magnific Gallery -->
-        <link rel="stylesheet" href="/css/magnific-popup.css">
+            @case(request()->is('faq'))
+                @include('css_component.faqcss')
+            @break
 
+            @case(request()->is('/'))
+                @include('css_component.welcomecss')
+            @break
 
+            @case(request()->is('cars'))
+                @include('css_component.carscss')
+            @break
+
+            @case(request()->is('cars/*'))
+                @include('css_component.cars_detailcss')
+            @break
+
+            @case(request()->is('about'))
+                @include('css_component.aboutcss')
+            @break
+
+            @default
+                @include('css_component.welcomecss')
+
+        @endswitch
         <!--Toastr css-->
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
         <!--Toastr js-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
 
 </head>
 <body>
@@ -128,7 +122,6 @@
                                                     <span><i class="fa fa-angle-down"></i></span>
                                                     <select class="form-control">
                                                         <option value="">EN</option>
-                                                        <option value="">FR</option>
                                                     </select>
                                                 </div><!-- end form-group -->
                                             </li>
@@ -158,10 +151,9 @@
                 
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right navbar-search-link">
-                        <li class="{{ request()->is('/') ? 'active' : ''}}" ><a href="/">Accueil</a>
-                                     
-                        </li>
-                       
+                        <li class="{{ request()->is('/') ? 'active' : ''}}" ><a href="/">Accueil</a></li>
+                        <li class="{{ request()->is('about') ? 'active' : ''}}""><a href="/about">A Propos</a>
+                        <li class="{{ request()->is('faq') ? 'active' : ''}}" ><a href="/faq">FAQ</a></li>
                         <li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">logistic services<span><i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown-menu">
                                 <li class="{{ request()->is('/hotels') ? 'active' : ''}}"><a href="/hotels">Hotels</a></li>
@@ -185,7 +177,6 @@
                             </ul>           
                         </li>
                        <li><a href="#">Real Estate</a></li>
-                        <li class=""><a href="/about">A Propos</a>
                         <li class=""><a href="/contact">Contactez Nous</a>
 
                         <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>
@@ -264,25 +255,24 @@
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
                             <h3 class="footer-heading">RESOURCES</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Blogs</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">Register</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/register">Register</a></li>
                                 <li><a href="#">Site Map</a></li>
                             </ul>
                         </div><!-- end columns -->
 
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 footer-widget ftr-about">
                             <h3 class="footer-heading">ABOUT US</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.</p>
+                            <p>{{setting('site.about')}}</p>
                             <ul class="social-links list-inline list-unstyled">
-                                <li><a href="#"><span><i class="fa fa-facebook"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-twitter"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-google-plus"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-pinterest-p"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-instagram"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-linkedin"></i></span></a></li>
-                                <li><a href="#"><span><i class="fa fa-youtube-play"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_facebook')}}"><span><i class="fa fa-facebook"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_twitter')}}"><span><i class="fa fa-twitter"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_google')}}"><span><i class="fa fa-google-plus"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_pinterest')}}"><span><i class="fa fa-pinterest-p"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_instagram')}}"><span><i class="fa fa-instagram"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_linkedin')}}"><span><i class="fa fa-linkedin"></i></span></a></li>
+                                <li><a href="{{setting('social-media.admin_youtube')}}"><span><i class="fa fa-youtube-play"></i></span></a></li>
                             </ul>
                         </div><!-- end columns -->
                         
@@ -309,29 +299,32 @@
             
         </section><!-- end footer -->
         
-        
-        <!-- Page Scripts Starts -->
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/jquery.magnific-popup.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.flexslider.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/owl.carousel.min.js"></script>
-        <script src="/js/custom-navigation.js"></script>
-        <script src="/js/custom-flex.js"></script>
-        <script src="/js/custom-owl.js"></script>
-        <script src="/js/custom-date-picker.js"></script>
-        <script src="/js/custom-video.js"></script>
+       <!-- Styles -->
+        @switch(request())
 
-<!-- Page Scripts Starts -->
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/bootstrap-datepicker.js"></script>
-        <script src="/js/slick.min.js"></script>
-        <script src="/js/custom-navigation.js"></script>
-        <script src="/js/custom-date-picker.js"></script>
-        <script src="/js/custom-slick.js"></script>
-        <!-- Page Scripts Ends -->
-        <!-- Page Scripts Ends -->
+            @case(request()->is('faq'))
+                @include('js_component.faqjs')
+            @break
+
+            @case(request()->is('/'))
+                @include('js_component.welcomejs')
+            @break
+
+            @case(request()->is('cars'))
+                @include('js_component.carsjs')
+            @break
+
+            @case(request()->is('cars/*'))
+                @include('js_component.cars_detailjs')
+            @break
+
+            @case(request()->is('about'))
+                @include('js_component.aboutjs')
+            @break
+
+            @default
+                @include('js_component.welcomejs')
+           
+        @endswitch
 </body>
 </html>

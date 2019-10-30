@@ -6,19 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Http\Request;
 
-class ContacMail extends Mailable
+class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+        $this->email = $request;
     }
 
     /**
@@ -27,7 +30,11 @@ class ContacMail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->view('view.name');
+    {   
+
+        return $this->subject($this->email->subject)
+                    ->from($this->email->email)
+                    ->to('nihatmahdi@gmail.com')
+                    ->view('email.contactmail');
     }
 }

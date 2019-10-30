@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    <style type="text/css">
+        .side-bar .support-contact p
+        {
+            font-size: 20px;
+        }
+    </style>
 	 <!--================= PAGE-COVER =================-->
         <section class="page-cover" id="cover-car-grid-list">
             <div class="container">
@@ -124,7 +130,7 @@
                                         <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.</p>
                                         <div class="support-contact">
                                             <span><i class="fa fa-phone"></i></span>
-                                            <p>+1 123 1234567</p>
+                                            <p>{{setting('general-info.admin_tel')}}</p>
                                         </div><!-- end support-contact -->
                                     </div><!-- end side-bar-block -->
                                 </div><!-- end columns -->
@@ -140,17 +146,22 @@
                                     	<div class="main-img cr-grid-img">
                                         	<a href="car-detail-left-sidebar.html">
                                     			<img src="/storage/{{$car->image}}" class="img-responsive" alt="hotel-img" />
+                                                @if($car->discount)
+                                                <div class="offer-tag">
+                                                    <span>{{$car->discount_value}}% Off</span>
+                                                </div><!-- end offer-tag -->
+                                                @endif
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">DZD {{$car->pricePerDay}}<span class="divider">|</span><span class="pkg">{{$car->agency->name}}</span></li>
+                                                    <li class="price">DZD  @convert($car->discount ? $car->pricePerDay - ($car->pricePerDay * $car->discount_value)/100 : $car->pricePerDay)<span class="divider">|</span><span class="pkg">{{$car->agency->name}}</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     	</div><!-- end cr-grid-img -->
                                         
                                          <div class="block-info cr-grid-info">
                                          	
-                                         	<h3 class="block-title"><a href="car-detail-left-sidebar.html">{{$car->type->type}}</a></h3>
+                                         	<h3 class="block-title"><a href="{{route('cars.show',$car->slug)}}">{{$car->type->type}}</a></h3>
                                             <p class="block-minor">{{$car->modele}}</p>
                                             <ul class="list-unstyled list-inline car-features">
                                             	<li><span><i class="fa fa-user"></i></span>{{$car->capacity}}</li>
@@ -188,65 +199,9 @@
         </section><!-- end innerpage-wrapper -->
         
         
-        <!--======================= BEST FEATURES =====================-->
-        <section id="best-features" class="banner-padding black-features">
-        	<div class="container">
-        		<div class="row">
-        			<div class="col-sm-6 col-md-3">
-                    	<div class="b-feature-block">
-                    		<span><i class="fa fa-dollar"></i></span>
-                        	<h3>Best Price Guarantee</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                        </div><!-- end b-feature-block -->
-                   </div><!-- end columns -->
-                   
-                   <div class="col-sm-6 col-md-3">
-                    	<div class="b-feature-block">
-                    		<span><i class="fa fa-lock"></i></span>
-                        	<h3>Safe and Secure</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                        </div><!-- end b-feature-block -->
-                   </div><!-- end columns -->
-                   
-                   <div class="col-sm-6 col-md-3">
-                    	<div class="b-feature-block">
-                    		<span><i class="fa fa-thumbs-up"></i></span>
-                        	<h3>Best Travel Agents</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                        </div><!-- end b-feature-block -->
-                   </div><!-- end columns -->
-                   
-                   <div class="col-sm-6 col-md-3">
-                    	<div class="b-feature-block">
-                    		<span><i class="fa fa-bars"></i></span>
-                        	<h3>Travel Guidelines</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
-                        </div><!-- end b-feature-block -->
-                   </div><!-- end columns -->
-                </div><!-- end row -->
-        	</div><!-- end container -->
-        </section><!-- end best-features -->
-        
-        
-        <!--========================= NEWSLETTER-1 ==========================-->
-        <section id="newsletter-1" class="section-padding back-size newsletter"> 
-            <div class="container">
-                <div class="row">
-                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <h2>Subscribe Our Newsletter</h2>
-                        <p>Subscibe to receive our interesting updates</p>	
-                        <form>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="email" class="form-control input-lg" placeholder="Enter your email address" required/>
-                                    <span class="input-group-btn"><button class="btn btn-lg"><i class="fa fa-envelope"></i></button></span>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- end columns -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section><!-- end newsletter-1 -->
+        @include('component.newslater')
+
+
         <script 
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
     </script> 
