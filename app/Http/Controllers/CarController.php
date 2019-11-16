@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Car as CarResource;
 use Illuminate\Http\Request;
-use App\Car;
-use App\Agency;
-use App\Type;
+use App\{Car,Agency,Type};
 
 class CarController extends Controller
 {
+
+    public function filterAgency(Request $request)
+    {
+        return Agency::filter($request->all())->get();
+            
+    }
     /**
      * Display a listing of the resource.
      *

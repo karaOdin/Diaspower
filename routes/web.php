@@ -1,8 +1,5 @@
 <?php
-use App\Slider;
-use App\Car;
-use App\FaqCategory;
-use App\Faq;
+use App\{Slider,Car,FaqCategory,Faq};
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
@@ -23,6 +20,8 @@ Route::get('/', function () {
 	$cars = Car::latest()->take(3)->get();
     return view('welcome',compact('sliders','cars'));
 });
+
+Route::post('/filter', 'CarController@filterAgency');
 
 
 Route::get('/hotels', function () {

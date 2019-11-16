@@ -15,7 +15,8 @@
         "mll-lab/laravel-graphql-playground": "^1.1",
         "nuwave/lighthouse": "^4.5",
         "spatie/laravel-cookie-consent": "^2.9",
-        "tcg/voyager": "^1.2"
+        "tcg/voyager": "^1.2",
+        "tucker-eric/eloquentfilter": "^2.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

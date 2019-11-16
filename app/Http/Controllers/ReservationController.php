@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Reservation;
-use App\Car;
-use App\User;
+use App\{Reservation,Car,User};
 use DateTime;
 use Auth;
 use DB;

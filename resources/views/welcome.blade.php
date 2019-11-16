@@ -350,7 +350,8 @@
                                 </div><!-- end cruises -->
 
                                 <div id="cars" class="tab-pane">
-                                    <form>                  
+                                    <form method="post" action="/filter">
+                                    {{ csrf_field() }}                  
                                         <div class="row">
                                         
                                             <div class="col-xs-12 col-sm-12 col-md-7 col-lg-6">
@@ -358,14 +359,14 @@
                                                 
                                                     <div class="col-sm-6 col-md-4">
                                                         <div class="form-group left-icon">
-                                                            <input type="text" class="form-control" placeholder="Country" />
+                                                            <input type="text" class="form-control" placeholder="phone" name="phone" />
                                                             <i class="fa fa-globe"></i>
                                                         </div>
                                                     </div><!-- end columns -->
                                                     
                                                     <div class="col-sm-6 col-md-4">
                                                         <div class="form-group left-icon">
-                                                            <input type="text" class="form-control" placeholder="City" />
+                                                            <input type="text" class="form-control" placeholder="name" name="name" />
                                                             <i class="fa fa-map-marker"></i>
                                                         </div>
                                                     </div><!-- end columns -->

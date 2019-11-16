@@ -152,17 +152,14 @@
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right navbar-search-link">
                         <li class="{{ request()->is('/') ? 'active' : ''}}" ><a href="/">Accueil</a></li>
-                        <li class="{{ request()->is('about') ? 'active' : ''}}""><a href="/about">A Propos</a>
+                        <li class="{{ request()->is('about') ? 'active' : ''}}"><a href="/about">A Propos</a>
                         <li class="{{ request()->is('faq') ? 'active' : ''}}" ><a href="/faq">FAQ</a></li>
                         <li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">logistic services<span><i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown-menu">
                                 <li class="{{ request()->is('/hotels') ? 'active' : ''}}"><a href="/hotels">Hotels</a></li>
                                 <li><a href="/cars">Cars</a></li>
                                 <li><a href="#">Machinery</a></li>
-                                @guest
-                                @else
-                                <li><a href="{{route('profile.show', $user = Auth::user())}}">Profile</a></li>
-                                @endguest
+                                
                             </ul>           
                         </li>
                        

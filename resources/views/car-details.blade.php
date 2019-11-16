@@ -163,7 +163,8 @@
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">@convert($agencyCar->pricePerDay)<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
+                                                    <li class="price">@if($car->discount) @discount($car->pricePerDay, $car->discount_value) @else @convert($car->pricePerDay)
+                                                        @endif<span class="divider">|</span><span class="pkg">7 Days Tour</span></li>
                                                     <li class="rating">
                                                         <span><i class="fa fa-star orange"></i></span>
                                                         <span><i class="fa fa-star orange"></i></span>
@@ -201,7 +202,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 side-bar right-side-bar">
                             
                             <div class="side-bar-block booking-form-block">
-                            	<h2 class="selected-price">DZD @convert($car->discount ? $car->pricePerDay - ($car->pricePerDay * $car->discount_value)/100 : $car->pricePerDay) <span>{{$car->make->make}}</span></h2>
+                            	<h2 class="selected-price">DZD @discount($car->pricePerDay, $car->discount_value) <span>{{$car->make->make}}</span></h2>
                             
                             	<div class="booking-form">
                                 	<h3>Book A Car</h3>

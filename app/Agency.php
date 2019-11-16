@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Scopes\AgencyScope;
 use Illuminate\Database\Eloquent\Builder;
 use Auth;
+use EloquentFilter\Filterable;
+
 class Agency extends Model
 {
 
@@ -28,6 +30,7 @@ class Agency extends Model
 			    });
 			}
 	}*/
+		 use Filterable;
 
 	public function scopeActive($query)
 	{

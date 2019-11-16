@@ -154,7 +154,8 @@
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">DZD  @convert($car->discount ? $car->pricePerDay - ($car->pricePerDay * $car->discount_value)/100 : $car->pricePerDay)<span class="divider">|</span><span class="pkg">{{$car->agency->name}}</span></li>
+                                                    <li class="price">DZD @if($car->discount) @discount($car->pricePerDay, $car->discount_value) @else @convert($car->pricePerDay) @endif
+                                                        <span class="divider">|</span><span class="pkg">{{$car->agency->name}}</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     	</div><!-- end cr-grid-img -->
