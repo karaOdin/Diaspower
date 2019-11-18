@@ -21,7 +21,8 @@ Route::get('/', function () {
     return view('welcome',compact('sliders','cars'));
 });
 
-Route::post('/filter', 'CarController@filterAgency');
+Route::post('/filter', 'CarController@filterCar');
+Route::get('/filter', 'CarController@filterCar');
 
 
 Route::get('/hotels', function () {
@@ -37,6 +38,7 @@ Route::get('/faq', function () {
 	$faqs = FaqCategory::with('faqs')->get();
     return view('faq',compact('faqs'));
 });
+
 
 Route::post('/faq', function(Request $request)
 {
@@ -107,3 +109,13 @@ Route::delete('/reservation/{id}','ReservationController@destroy')->name('reserv
 
 Route::get('/profile','UserController@show')->name('profile.show');
 Route::patch('/profile/{id}','UserController@edit')->name('profile.edit');
+
+
+//juridicials section
+
+Route::get('/juridicial',function ()
+{
+    return view('juridicial');
+});
+
+Route::post('/juridicial/','JuridicialController@store')->name('juridicial.store')->middleware('verified');

@@ -10,12 +10,17 @@ use EloquentFilter\Filterable;
 
 class Agency extends Model
 {
+	use Filterable;
 
     public function cars()
 	{
 	    	return $this->hasMany(Car::class);
 	}
 	
+	public function city()
+	{
+		return $this->belongsTo(City::class);
+	}
 	/*
 	protected static function boot()
 	{
@@ -30,7 +35,7 @@ class Agency extends Model
 			    });
 			}
 	}*/
-		 use Filterable;
+		 
 
 	public function scopeActive($query)
 	{

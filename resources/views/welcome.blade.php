@@ -363,10 +363,11 @@
                                                             <i class="fa fa-globe"></i>
                                                         </div>
                                                     </div><!-- end columns -->
+
                                                     
                                                     <div class="col-sm-6 col-md-4">
                                                         <div class="form-group left-icon">
-                                                            <input type="text" class="form-control" placeholder="name" name="name" />
+                                                            <input type="text" class="form-control" placeholder="modele" name="modele" />
                                                             <i class="fa fa-map-marker"></i>
                                                         </div>
                                                     </div><!-- end columns -->

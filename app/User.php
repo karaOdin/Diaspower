@@ -20,6 +20,12 @@ class User extends   \TCG\Voyager\Models\User implements MustVerifyEmail
     {
         return $this->hasOne(Agency::class);
     }
+
+
+    public function juridicals()
+   {
+        $this->hasMany(Juridical::class);
+   }
     /**
      * The attributes that are mass assignable.
      *

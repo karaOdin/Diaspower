@@ -9,10 +9,18 @@ use App\{Car,Agency,Type};
 class CarController extends Controller
 {
 
-    public function filterAgency(Request $request)
+    public function filterCar(Request $request)
     {
-        return Agency::filter($request->all())->get();
-            
+        $cars = Car::filter($request->all())->get();
+       /* if($request->has('city_id'))
+        {
+            $c = $request->input('city_id');
+            $cars = Car::whereHas('agency.city', function($q) use ($c)
+            {
+                return $q->where('id', $c);
+            })->get();
+        }*/
+        return view('car-search',compact('cars'));   
     }
     /**
      * Display a listing of the resource.

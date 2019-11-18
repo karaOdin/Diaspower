@@ -11,4 +11,19 @@ class City extends Model
 	{
 		return $this->hasMany(Reservation::class);
 	}
+
+	public function agencies()
+	{
+	    return $this->hasMany(Agency::class);
+	}
+
+	public function cars()
+	{	
+		return $this->hasManyThrough(Car::class, Agency::class);
+	}
+
+	public function juridicals()
+   {
+   	    $this->hasMany(Juridical::class);
+   }
 }

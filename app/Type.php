@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     public function cars()
-	    {
-	    	return $this->hasMany(Car::class);
-	    } 
+	{
+	  	return $this->hasMany(Car::class);
+	} 
 }

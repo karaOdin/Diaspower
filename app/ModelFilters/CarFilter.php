@@ -3,6 +3,7 @@
 namespace App\ModelFilters;
 
 use EloquentFilter\ModelFilter;
+use Illuminate\Http\Request;
 
 class CarFilter extends ModelFilter
 {
@@ -14,8 +15,18 @@ class CarFilter extends ModelFilter
     */
     public $relations = [];
 
-    public function name($name)
+    public function city($id)
     {
-    	return $this->where('name', 'Like',"$name%");
+    	return $this->related('agency','city_id','=',$id);
+    }
+
+    public function modele($modele)
+    {
+    	return $this->where('modele', 'Like',"$modele%");
+    }
+
+     public function agency($id)
+    {
+        return $this->where('agency_id', $id);
     }
 }

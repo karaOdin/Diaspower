@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Auth;
+use EloquentFilter\Filterable;
 
 class Car extends Model
 {
@@ -24,7 +25,8 @@ class Car extends Model
 		}
 	}*/
 
-
+	use Filterable;
+	
 	public function scopeCar($query)
 	{
 		if (Auth::user()->role_id == 3) 
