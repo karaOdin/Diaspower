@@ -1,8 +1,8 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <title>Diaspower | Sign In</title>
+        <title>Diaspower | Se connecter</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -48,13 +48,13 @@
                         <div class="col-sm-12">
                             
                             <div class="full-page-title">
-                                <h3 class="company-name"><span><i class="fa fa-plane"></i>Dias</span>Power</h3>
-                                <p style="color: #fff">Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
+                                <img src="/images/logo-white.png" style="width: 200px; margin-top: -50px" >
+                                <p style="color: white;margin:25px auto">La société se développe quotidiennement et des mises à jour sont apportées régulièrement. Pensez à la Newsletter pour connaître en temps réel les nouveautés et services qui sont ajoutés ! </p>
                             </div><!-- end full-page-title -->
                             
                             
                             <div class="custom-form custom-form-fields">
-                                <h3>Login</h3>
+                                <h3>S'IDENTIFIER</h3>
                                 @if(Session::has('warning'))
                                 <div class="alert alert-danger">
                                   {{ Session::get('warning')}}
@@ -68,19 +68,19 @@
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                    <strong style="color: red">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                          <span><i class="fa fa-user"></i></span>
                                     </div>
                                     
                                     <div class="form-group">
-                                         <input  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}" />
+                                         <input  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Mot de Passe') }}" />
                                              <span><i class="fa fa-lock"></i></span>
 
                                              @error('password')
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                    <strong style="color: red">{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                          <span><i class="fa fa-lock"></i></span>
@@ -89,23 +89,23 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            Se souvenir de moi
                                         </label>
                                     
-                                    <button class="btn btn-orange btn-block">{{ __('Login') }}</button>
+                                    <button class="btn btn-orange btn-block">{{ __('Se Connecter') }}</button>
                                 </form>
                                 
                                 <div class="other-links">
-                                    <p class="link-line">New Here ? <a href="#">Signup</a></p>
+                                    <p class="link-line">Nouveau ici ? <a href="/register">S'inscrire</a></p>
                                          @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Your Password?') }}
+                                                {{__('auth.forgot')}}
                                             </a>
                                         @endif
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             
-                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')</p>
+                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('Tous les droits sont réservés.')</p>
                         </div><!-- end columns -->
                     </div><!-- end row -->
                 </div><!-- end container -->

@@ -18,6 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/Car','CarController@indexThird');
+Route::get('/City','CityController@getCities');
+Route::get('/Country','CityController@getCountries');
 Route::get('/vue',function ($value='')
 {
 	return view('vue');

@@ -70,7 +70,6 @@ class UserController extends Controller
          'name'=>['required',Rule::unique('users')->ignore($id)],
          'email' =>['required','email',Rule::unique('users')->ignore($id)],
          'phone' => ['required','numeric','min:10'],
-         'city' => ['required','min:3'],
         ));
 
         $user = User::findOrFail($id);
@@ -78,7 +77,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->adress = $request->input('adress');
         $user->phone = $request->input('phone');
-        $user->city = $request->input('city');
+        $user->city_id = $request->input('city_id');
+        $user->role_id = $request->input('role_id');
 
         $user->save();
 

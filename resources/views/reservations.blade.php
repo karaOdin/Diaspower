@@ -1,24 +1,31 @@
 @extends('layouts.app')
-
+@section('title','Reservation')
 @section('content')
 
-@if(session()->has('message'))
-      <script>
+    @if(session()->has('message'))
+          <script>
 
-            var type = "{{Session::get('alert-type','success')}}"
-            toastr.success("{{ Session::get('message') }}");
-          
-      </script>
-    @endif
+                var type = "{{Session::get('alert-type','success')}}"
+                 if(type == 'success')
+                {
+                    toastr.success("{{ Session::get('message') }}");
+                }
+                else
+                {
+                    toastr.error("{{Session::get('message')}}");
+                }
+            
+          </script>
+        @endif
   <!--========= PAGE-COVER ==========-->
         <section class="page-cover dashboard">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">My Reservations</h1>
+                    	<h1 class="page-title">Mes réservations</h1>
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">My Reservations</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">Mes réservations</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -33,9 +40,9 @@
                     <div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         	<div class="dashboard-heading">
-                                <h2>Travel <span>Profile</span></h2>
-                                <p>Hi Lisa, Welcome to Star Travels!</p>
-                                <p>All your trips booked with us will appear here and you'll be able to manage everything!</p>
+                                <h2>Dias <span>Power</span></h2>
+                                <p>salut <strong style="text-transform: uppercase;">{{Auth::user()->name}}</strong>, Bienvenue chez Diaspower!</p>
+                                <p>Tous vos voyages réservés avec nous apparaîtront ici et vous pourrez tout gérer!</p>
                             </div><!-- end dashboard-heading -->
                             
                             <div class="dashboard-wrapper">
@@ -43,13 +50,13 @@
                                 
                                 	<div class="col-xs-12 col-sm-2 col-md-2 dashboard-nav">
                                 		<ul class="nav nav-tabs nav-stacked text-center">
-                                    		<li><a href="{{route('profile.show')}}"><span><i class="fa fa-user"></i></span>Profile</a></li>
-                                            <li class="active"><a href="{{route('reservation.index')}}"><span><i class="fa fa-briefcase"></i></span>My Reservations</a></li>
+                                    		<li><a href="{{route('profile.show')}}"><span><i class="fa fa-user"></i></span>Profil</a></li>
+                                            <li class="active"><a href="{{route('reservation.index')}}"><span><i class="fa fa-briefcase"></i></span>Mes réservations</a></li>
                                         </ul>
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-10 col-md-10 dashboard-content booking-trips">
-                                		<h2 class="dash-content-title">Trips You have Booked!</h2>
+                                		<h2 class="dash-content-title">Vous avez réservé!</h2>
                                         <div class="dashboard-listing booking-listing">
                                         	                                            
                                             <div class="table-responsive">
@@ -72,24 +79,24 @@
                                                             <td class="dash-list-text booking-list-detail">
                                                             	<h3>{{$reservation->car->modele}}</h3>
                                                                 <ul class="list-unstyled booking-info">
-                                                                	<li><span>Reservation Date:</span> {{ $reservation->pickupDate }}</li>
-                                                                    <li><span>Return Date:</span> {{ $reservation->returnDate }}</li>
-                                                                    <li><span>Duration:</span> {{$days}} days<span class="line">|</span>
-                                                                    	<span>Price:</span> {{$reservation->price}}<span class="line">|</span><span>Agency:</span> {{$reservation->agency->name}}</li>
+                                                                	<li><span>Date de réservation:</span> {{ $reservation->pickupDate }}</li>
+                                                                    <li><span>Date de retour:</span> {{ $reservation->returnDate }}</li>
+                                                                    <li><span>Durée:</span> {{$days}} days<span class="line">|</span>
+                                                                    	<span>Prix:</span> {{$reservation->price}}<span class="line">|</span><span>Agency:</span> {{$reservation->agency->name}}</li>
                                                                 </ul>
                                                             </td>
                                                             <td class="dash-list-btn">
                                                             	<form method="post" action="{{route('reservation.destroy',$reservation->id)}}"  >
                                                             		{{csrf_field()}}
                     												{{method_field('DELETE')}}
-                                                            		<button type="submit" class="btn btn-orange">Cancel</button>
+                                                            		<button type="submit" class="btn btn-orange">Annuler</button>
                                                             	</form>
                                                             	@if($reservation->isPending == 0)
                                                             		
                                                             		<button style="background-color: red; color: #fff" class="btn">Pending</button></td>
                                                             	@else
 
-                                                            		<button class="btn btn-success">Approve</button></td>
+                                                            		<button class="btn btn-success">Approuver</button></td>
 
                                                             	@endif
                                                         </tr>

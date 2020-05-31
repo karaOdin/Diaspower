@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Forgot Password 2</title>
+        <title>MOT DE PASSE OUBLIÉ</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -48,13 +48,13 @@
                         <div class="col-sm-12">
                             
                             <div class="full-page-title">
-                                <h3 class="company-name"><span><i class="fa fa-plane"></i>Dias</span>Power</h3>
+                                <h3 class="company-name"><img src="/storage/{{setting('site.logo')}}" style="margin-right: 15px"><span>Dias</span>Power</h3>
                                 <p>Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
                             </div><!-- end full-page-title -->
                             
                             <div id="forgot-password">
                                 <div class="custom-form custom-form-fields">
-                                    <h3>Forgot Password</h3>
+                                    <h3>MOT DE PASSE OUBLIÉ</h3>
                                     <div class="card-body">
 
                                     @if (session('status'))
@@ -76,17 +76,17 @@
                                              <span><i class="fa fa-envelope"></i></span>
                                         </div>
                                         
-                                        <button class="btn btn-orange btn-block">{{ __('Send Password Reset Link') }}</button>
+                                        <button class="btn btn-orange btn-block">{{ __('Envoyer le lien de réinitialisation ') }}</button>
                                     </form>
                                         
                                     <div class="other-links">
-                                        <p class="link-line">Already Have An Account ? <a href="/login">Login Here</a></p>
-                                        <p class="link-line">New Here ? <a href="/register">Join Us</a></p>
+                                        <p class="link-line">Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a></p>
+                                        <p class="link-line">Nouveau ici ? <a href="/register">Rejoignez-nous</a></p>
                                     </div><!-- end other-links -->
                                 </div><!-- end custom-form -->
                             </div><!-- end forgot-password -->
                             
-                            <p class="full-page-copyright">© 2017 StarTravel. All rights reserved.</p>
+                                <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('Tous les droits sont réservés.')</p>
                         </div><!-- end columns -->
                     </div><!-- end row -->
                 </div><!-- end container -->

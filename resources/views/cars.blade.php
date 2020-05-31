@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Location de Voitures')
 @section('content')
     <style type="text/css">
         .side-bar .support-contact p
@@ -6,15 +7,30 @@
             font-size: 20px;
         }
     </style>
+         @if(session()->has('message'))
+          <script>
+
+                var type = "{{Session::get('alert-type','success')}}"
+                 if(type == 'success')
+                {
+                    toastr.success("{{ Session::get('message') }}");
+                }
+                else
+                {
+                    toastr.error("{{Session::get('message')}}");
+                }
+            
+          </script>
+        @endif
 	 <!--================= PAGE-COVER =================-->
         <section class="page-cover" id="cover-car-grid-list">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">Car Grid Left Sidebar</h1>
+                    	<h1 class="page-title">Voitures</h1>
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Car Grid Left Sidebar</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">Voitures</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -29,14 +45,14 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 side-bar left-side-bar">
                                         
                             <div class="side-bar-block filter-block">
-                                <h3>Sort By Filter</h3>
-                                <p>Find your dream flights today</p>
+                                <h3>Trier par filtre</h3>
+                                <p>Trouvez votre voiture aujourd'hui</p>
                                 
                                 <div class="panels-group">
                                     
                                     <div class="panel panel-default">
                                         <div class="panel-heading">					
-                                            <a href="#panel-1" data-toggle="collapse" >Select Category <span><i class="fa fa-angle-down"></i></span></a>
+                                            <a href="#panel-1" data-toggle="collapse" >Choisir une catégorie <span><i class="fa fa-angle-down"></i></span></a>
                                         </div><!-- end panel-heading -->
                                         
                                         <div id="panel-1" class="panel-collapse collapse">
@@ -124,16 +140,7 @@
                                     </div><!-- end side-bar-block -->
                                 </div><!-- end columns -->
                                 
-                                <div class="col-xs-12 col-sm-6 col-md-12">    
-                                    <div class="side-bar-block support-block">
-                                        <h3>Need Help</h3>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.</p>
-                                        <div class="support-contact">
-                                            <span><i class="fa fa-phone"></i></span>
-                                            <p>{{setting('general-info.admin_tel')}}</p>
-                                        </div><!-- end support-contact -->
-                                    </div><!-- end side-bar-block -->
-                                </div><!-- end columns -->
+                                @include('component.help')
                                 
                             </div><!-- end row -->
                         </div><!-- end columns --> 
@@ -171,7 +178,7 @@
                                                 <li><span><i class="fa fa-tint"></i></span>{{$car->fuel->fuel}}</li>
                                             </ul>
                                             <div class="grid-btn">
-                                            	<a href="{{route('cars.show',$car->slug)}}" class="btn btn-orange btn-block btn-lg">View More</a>
+                                            	<a href="{{route('cars.show',$car->slug)}}" class="btn btn-orange btn-block btn-lg">Voir plus</a>
                                             </div><!-- end grid-btn -->
                                          </div><!-- end cr-grid-info -->
                                     </div><!-- end cr-grid-block -->

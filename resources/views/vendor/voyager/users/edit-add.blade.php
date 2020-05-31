@@ -114,12 +114,17 @@
                                 <label for="locale">Adress</label>
                                 <input type="text" name="adress" placeholder="adress" value="{{ $dataTypeContent->adress ?? '' }}" class="form-control">
                             </div>
-
+                            <?php $cities = \App\City::all(); ?>
+                            
                             <div class="form-group">
                                 <label for="locale">City</label>
-                                <input type="text" name="city" placeholder="city" value="{{ $dataTypeContent->city ?? '' }}" class="form-control">
+                                <select class="form-group" name="city_id">
+                                    @foreach($cities as $city)
+                                    <option value="city_id">{{$city->id}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-
+                            
                             <input type="text" name="email_verified_at" value="{{ $dataTypeContent->email_verified_at ?? '' }}" hidden>
                             <!-- End My customization -->
                         </div>

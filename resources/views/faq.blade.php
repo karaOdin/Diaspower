@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <h1 class="page-title">FAQ</h1>
                         <ul class="breadcrumb">
-                            <li><a href="/">Home</a></li>
+                            <li><a href="/">Accueil</a></li>
                             <li class="active">FAQ</li>
                         </ul>
                     </div><!-- end columns -->
@@ -44,27 +44,30 @@
                         	<div class="side-bar-block booking-form-block text-center">
                             
                             	<div class="booking-form">
-                                	<h3>Let us help you</h3>
-                                    <p>Can't find your answer. Ask to us.</p>
+                                	<h3>LAISSEZ-NOUS VOUS AIDER</h3>
+                                    <p>Vous ne trouvez pas votre réponse. Demandez nous.</p>
                                     
                                     <form  action="{{url('contact')}}" method="post"  enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                     	
                                         <div class="form-group">
-                                    		<input type="text" class="form-control" name="name" placeholder="Name" required/>
+                                    		<input type="text" class="form-control" name="name" placeholder="Nom" required/>
                                         </div>
                                         
                                         <div class="form-group">
                                     		<input type="email" class="form-control" name="email" placeholder="Email" required/></div>
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="phone" placeholder="Tel" required/></div>
                                         
                                         <div class="form-group">
-                                    		<input type="text" class="form-control" name="subject" placeholder="Subject" required/></div>
+                                    		<input type="text" class="form-control" name="subject" placeholder="Sujet" required/></div>
                                         
                                         <div class="form-group">
-                                    		<textarea class="form-control" rows="5" name="message" placeholder="Your Question"></textarea>                                       
+                                    		<textarea class="form-control" rows="5" name="message" placeholder="Votre Question"></textarea>                                       
                                         </div>
                                         
-                                        <button class="btn btn-block btn-orange">Send Message</button>
+                                        <button class="btn btn-block btn-orange">Envoyer le message</button>
                                     </form>
 
                                 </div><!-- end booking-form -->

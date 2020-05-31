@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" id="cpswitch" href="/css/orange.css">
         <link rel="stylesheet" href="/css/responsive.css">
+        <link rel="stylesheet" href="css/egg-blue.css">
         
         <!-- Color Panel -->
         <link rel="stylesheet" href="/css/jquery.colorpanel.css">

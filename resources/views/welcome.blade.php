@@ -1,6 +1,30 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title','Accueil')
 @section('content')
+        <style type="text/css">
+            .innerpage-section-padding{
+                padding-top: 0;
+            }
+            .affix ~ section{
+                top: 0;
+            }
+        </style>
+
+        @if(session()->has('message'))
+          <script>
+
+                var type = "{{Session::get('alert-type','success')}}"
+                 if(type == 'success')
+                {
+                    toastr.success("{{ Session::get('message') }}");
+                }
+                else
+                {
+                    toastr.error("{{Session::get('message')}}");
+                }
+            
+          </script>
+        @endif
         <!--========================= FLEX SLIDER =====================-->
         <section class="flexslider-container" id="flexslider-container-1">
 
@@ -12,7 +36,7 @@
                             <div class="container">
                                 <h2>{{$slider->smaill_text}}</h2>
                                 <h1>{{$slider->big_text}}</h1>
-                                <a href="{{$slider->link}}" class="btn btn-default">View More</a>
+                                <a href="{{$slider->link}}" class="btn btn-default">Voir plus</a>
                             </div><!-- end container -->  
                         </div><!-- end meta -->
                     </li><!-- end item-1 -->
@@ -24,7 +48,10 @@
             <div id="about-content-2" class="innerpage-section-padding">
                 <div class="container">
                     <div class="row">
-                        
+                        <div class="page-heading">
+                            <h2>Bienvenue</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
                             <div id="abt-cnt-2-img">
                                 <img src="/storage/{{setting('about.admin_about_image')}}" class="img-responsive" alt="about-img" />
@@ -33,27 +60,27 @@
                         
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8">
                             <div id="abt-cnt-2-text">
-                                <h2>Welcome to<span><span><i class="fa fa-plane"></i> Dias</span>Power</span></h2>
-                                <p>Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. Vestibulum suscipit convallis purus ut mattis. In eget turpis eget urna molestie ultricies in sagittis nunc. Sed accumsan leo in mauris rhoncus volutpat. In eget turpis eget urna molestie ultricies in sagittis nunc. Sed accumsan leo in mauris rhoncus volutpat.</p>
+                                <h2>  <!--<img src="/storage/{{setting('site.logo')}}" style="margin-right: 15px;">--> <img src="/images/diaspower.png" style="width: 60%"> </h2>
+                                <p>{{setting('site.description')}}</p>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="abt-cnt-2-ftr">
                                             <span><i class="fa fa-diamond"></i></span>
-                                            <h4>Best Service</h4>
+                                            <h4>Meilleurs services</h4>
                                         </div><!-- end abt-cnt-2-ftr -->
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="abt-cnt-2-ftr">
                                             <span><i class="fa fa-clock-o"></i></span>
-                                            <h4>24/7 Availability</h4>
+                                            <h4>24/7 Disponibilité</h4>
                                         </div><!-- end abt-cnt-2-ftr -->
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="abt-cnt-2-ftr">
                                             <span><i class="fa fa-star"></i></span>
-                                            <h4>5 Star Rating</h4>
+                                            <h4>5 Évaluation étoilée</h4>
                                         </div><!-- end abt-cnt-2-ftr -->
                                     </div><!-- end columns -->
                                 </div><!-- end row -->
@@ -64,6 +91,8 @@
                 </div><!-- end container -->
             </div><!-- end about-content-2 -->
 
+
+
             <div class="search-tabs" id="search-tabs-1">
                 <div class="container">
                     <div class="row">
@@ -71,8 +100,8 @@
                         
                             <ul class="nav nav-tabs center-tabs">
                                 
-                                <li><a href="#hotels" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Hotels</span></a></li>
-                                <li><a href="#cars" data-toggle="tab"><span><i class="fa fa-car"></i></span><span class="st-text">Cars</span></a></li>
+                                <li><a href="#hotels" data-toggle="tab"><span><i class="fa fa-building"></i></span><span class="st-text">Hôtels</span></a></li>
+                                <li><a href="#cars" data-toggle="tab"><span><i class="fa fa-car"></i></span><span class="st-text">Voitures</span></a></li>
                             </ul>
         
                             <div class="tab-content">
@@ -134,7 +163,7 @@
                                             </div><!-- end columns -->
                                             
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                                <button class="btn btn-orange">Search</button>
+                                                <button class="btn btn-orange">Chercher</button>
                                             </div><!-- end columns -->
                                             
                                         </div><!-- end row -->
@@ -208,7 +237,7 @@
                                             </div><!-- end columns -->
                                             
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                                <button class="btn btn-orange">Search</button>
+                                                <button class="btn btn-orange">Chercher</button>
                                             </div><!-- end columns -->
                                             
                                         </div><!-- end row -->
@@ -278,7 +307,7 @@
                                             </div><!-- end columns -->
                                             
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                                <button class="btn btn-orange">Search</button>
+                                                <button class="btn btn-orange">Chercher</button>
                                             </div><!-- end columns -->
                                             
                                         </div><!-- end row -->
@@ -342,7 +371,7 @@
                                             </div><!-- end columns -->
                                             
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                                <button class="btn btn-orange">Search</button>
+                                                <button class="btn btn-orange">Chercher</button>
                                             </div><!-- end columns -->
                                             
                                         </div><!-- end columns -->
@@ -403,7 +432,7 @@
                                             </div><!-- end columns -->
     
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                                <button class="btn btn-orange">Search</button>
+                                                <button class="btn btn-orange">Chercher</button>
                                             </div><!-- end columns -->
                                             
                                         </div><!-- end row -->                  
@@ -421,33 +450,27 @@
         
         
         <!--=============== HOTEL OFFERS ===============-->
-        <section id="hotel-offers" class="section-padding">
+        <section id="hotel-offers" class="section-padding" style="top: 120px">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-heading">
-                            <h2>Hotels Offers</h2>
+                            <h2>Réservez votre hôtel en Algérie</h2>
                             <hr class="heading-line" />
                         </div><!-- end page-heading -->
                         
                         <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-hotel-offers">
-                            
+                            @foreach($hotels as $hotel)
                             <div class="item">
                                 <div class="main-block hotel-block">
                                     <div class="main-img">
                                         <a href="#">
-                                            <img src="images/hotel-1.jpg" class="img-responsive" alt="hotel-img" />
+                                            <img src="/storage/{{$hotel->image}}" class="img-responsive" alt="hotel-img" />
                                         </a>
                                         <div class="main-mask">
                                             <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
+                                                <li class="price"> @convert($hotel->pricePerDay) DZD<span class="divider">|</span><span class="pkg">Par Nuitx</span></li>
+                                                
                                             </ul>
                                         </div><!-- end main-mask -->
                                     </div><!-- end offer-img -->
@@ -458,156 +481,110 @@
                                         </div><!-- end arrow -->
                                         
                                         <div class="main-title hotel-title">
-                                            <a href="#">Herta Berlin Hotel</a>
-                                            <p>From: Scotland</p>
+                                            <a href="#">{{$hotel->name}}</a>
+                                            <p>From: {{$hotel->city->city}}</p>
                                         </div><!-- end hotel-title -->
                                     </div><!-- end hotel-info -->
                                 </div><!-- end hotel-block -->
                             </div><!-- end item -->
                             
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                        <a href="#">
-                                            <img src="images/hotel-2.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                        <div class="arrow">
-                                            <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                        <div class="main-title hotel-title">
-                                            <a href="#">Roosevelt Hotel</a>
-                                            <p>From: Germany</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                        <a href="#">
-                                            <img src="images/hotel-3.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                        <div class="arrow">
-                                            <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                        <div class="main-title hotel-title">
-                                            <a href="#">Hotel Fort De</a>
-                                            <p>From: Austria</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                        <a href="#">
-                                            <img src="images/hotel-4.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                            <ul class="list-unstyled list-inline offer-price-1">
-                                                <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                <li class="rating">
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                        <div class="arrow">
-                                            <a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                        <div class="main-title hotel-title">
-                                            <a href="#">Roosevelt Hotel</a>
-                                            <p>From: Germany</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
+                            @endforeach                            
                         </div><!-- end owl-hotel-offers -->
                         
                         <div class="view-all text-center">
-                            <a href="#" class="btn btn-orange">View All</a>
+                            <a href="{{route('hotels.index')}}" class="btn btn-orange">Voir tout</a>
                         </div><!-- end view-all -->
                     </div><!-- end columns -->
                 </div><!-- end row -->
             </div><!-- end container -->
         </section><!-- end hotel-offers -->
+
+         <!--================ houses OFFERS ==============-->
+        <section id="vehicle-offers" class="section-padding" style="padding-top: 56px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-heading">
+                            <h2>Logements privés</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
+                        
+                        <div class="row">
+                            @foreach($houses as $house)
+                            <div class="col-sm-6 col-md-4">
+                                <div class="main-block vehicle-block">
+                                    <div class="main-img vehicle-img">
+                                        <a href="{{route('houses.show',$house->slug)}}">
+                                            <img src="/storage/{{$house->image}}" class="img-responsive" alt="tour-img" />
+                                        </a>
+                                        
+                                    </div><!-- end vehicle-img -->
+                                    
+                                    <div class="main-mask">
+                                            <ul class="list-unstyled list-inline offer-price-1">
+                                                <li class="price">{{$house->pricePerDay}} DZD <span class="divider">|</span><span class="pkg">Par Nuitx</span></li>
+                                                
+                                            </ul>
+                                        </div><!-- end main-mask -->
+                                        
+                                    <div class="main-info hotel-info">
+                                        <div class="arrow">
+                                            <a href="{{route('houses.show',$house->slug)}}"><span><i class="fa fa-angle-right"></i></span></a>
+                                        </div><!-- end arrow -->
+                                        
+                                        <div class="main-title hotel-title">
+                                            <a href="{{route('houses.show',$house->slug)}}">{{$house->name}}</a>
+                                            <p>From: {{$house->city->city}}</p>
+                                        </div><!-- end hotel-title -->
+                                    </div><!-- end hotel-info -->
+                                </div><!-- end vehicle-block -->
+                            </div><!-- end columns -->
+                            @endforeach
+                                                        
+                        </div><!-- end row -->
+                        
+                        <div class="view-all text-center">
+                            <a href="{{route('houses.index')}}" class="btn btn-orange">Voir tout</a>
+                        </div><!-- end view-all -->      
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section><!-- end vehicle-offers --> 
         
         
         <!--======================= BEST FEATURES =====================-->
-        <section id="best-features" class="banner-padding black-features">
+        <section id="best-features" class="banner-padding black-features" style="padding:35px">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
                         <div class="b-feature-block">
                             <span><i class="fa fa-dollar"></i></span>
-                            <h3>Best Price Guarantee</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
+                            <h3>Garantie du meilleur prix</h3>
+                            <p></p>
                         </div><!-- end b-feature-block -->
                    </div><!-- end columns -->
                    
                    <div class="col-sm-6 col-md-3">
                         <div class="b-feature-block">
                             <span><i class="fa fa-lock"></i></span>
-                            <h3>Safe and Secure</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
+                            <h3>Sûr et sécurisé</h3>
+                            <p></p>
                         </div><!-- end b-feature-block -->
                    </div><!-- end columns -->
                    
                    <div class="col-sm-6 col-md-3">
                         <div class="b-feature-block">
                             <span><i class="fa fa-thumbs-up"></i></span>
-                            <h3>Best Travel Agents</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
+                            <h3>Meilleurs agents automobiles</h3>
+                            <p></p>
                         </div><!-- end b-feature-block -->
                    </div><!-- end columns -->
                    
                    <div class="col-sm-6 col-md-3">
                         <div class="b-feature-block">
                             <span><i class="fa fa-bars"></i></span>
-                            <h3>Travel Guidelines</h3>
-                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis.</p>
+                            <h3>Guide de réservation</h3>
+                            <p></p>
                         </div><!-- end b-feature-block -->
                    </div><!-- end columns -->
                 </div><!-- end row -->
@@ -618,27 +595,53 @@
       
                      
         
-        
-        
-        <!--==================== VIDEO BANNER ===================-->
-        <section id="video-banner" class="banner-padding back-size"> 
+        <!--==================== TESTIMONIALS ====================-->
+        <section id="testimonials" class="section-padding back-size">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2>Take a Video Tour</h2>
-                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</p>
-                        
-                        <a href="{{setting('about.admin_video')}}" class="popup-youtube" id="play-button"><span><i class="fa fa-play"></i></span></a>
+                        <div class="page-heading white-heading">
+                            <h2>Témoignages</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
+
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <div class="carousel-inner text-center">
+                            
+                               <?php 
+                                    $quotes = \App\Quote::all();
+                                    $indx = 0;
+                                    $imgIndenx = 0;
+                                ?>
+                                @foreach($quotes as $quote)
+                                <div class="item <?php $indx == 0 ? print('active') : print(''); $indx++; ?>">
+                                    <i><blockquote>{{$quote->quote}}</blockquote></i>
+                                    
+                                    <small>{{$quote->name}}</small>
+                                </div><!-- end item -->
+                                @endforeach
+                            </div><!-- end carousel-inner -->
+                            
+                            <ol class="carousel-indicators">
+                                @foreach($quotes as $image)
+                                <li data-target="#quote-carousel" data-slide-to="<?php print($imgIndenx++) ?>" class="active"><img src="/storage/{{$image->image}}" class="img-responsive"  alt="client-img">
+                                </li>
+                                @endforeach
+                            </ol>
+        
+                        </div><!-- end quote-carousel -->
                     </div><!-- end columns -->
                 </div><!-- end row -->
             </div><!-- end container -->
-        </section><!-- end video-banner -->
+        </section><!-- end testimonials --> 
+        
+       
         
         
                                
         
         <!--==================== HIGHLIGHTS ====================-->
-        <section id="highlights" class="section-padding back-size"> 
+        <section id="highlights" class="section-padding back-size" style="padding:35px;"> 
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -698,7 +701,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-heading">
-                            <h2>Vehicle Offers</h2>
+                            <h2>Offres de véhicules</h2>
                             <hr class="heading-line" />
                         </div><!-- end page-heading -->
                         
@@ -710,21 +713,19 @@
                                         <a href="#">
                                             <img src="/storage/{{$car->image}}" class="img-responsive" alt="tour-img" />
                                         </a>
-                                        <div class="vehicle-time">
-                                            <p><span><i class="fa fa-clock-o"></i></span>22/h</p>
-                                        </div><!-- end vehicle-time -->
+                                        
                                     </div><!-- end vehicle-img -->
                                     
                                     <div class="offer-price-2">
                                         <ul class="list-unstyled">
-                                            <li class="price">DZD {{$car->pricePerDay}}<a href="{{route('cars.show',$car->slug)}}" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
+                                            <li class="price">DZD @convert($car->pricePerDay)<a href="{{route('cars.show',$car->slug)}}" ><span class="arrow"><i class="fa fa-angle-right"></i></span></a></li>
                                         </ul>
                                     </div><!-- end offer-price-2 -->
                                         
                                     <div class="main-info vehicle-info">
                                         <div class="main-title vehicle-title">
                                             <a href="{{route('cars.show',$car->id)}}">{{$car->modele}} - {{$car->make->make}}</a>
-                                            <p>Per Day</p>
+                                            <p>PAR JOUR</p>
                                             
                                         </div><!-- end vehicle-title -->
                                     </div><!-- end vehicle-info -->
@@ -735,7 +736,7 @@
                         </div><!-- end row -->
                         
                         <div class="view-all text-center">
-                            <a href="{{route('cars.index')}}" class="btn btn-orange">View All</a>
+                            <a href="{{route('cars.index')}}" class="btn btn-orange">Voir tout</a>
                         </div><!-- end view-all -->      
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -743,75 +744,21 @@
         </section><!-- end vehicle-offers --> 
         
         
-        <!--==================== TESTIMONIALS ====================-->
-        <section id="testimonials" class="section-padding back-size">
+        
+                
+         <!--==================== VIDEO BANNER ===================-->
+        <section id="video-banner" class="banner-padding back-size"> 
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="page-heading white-heading">
-                            <h2>Testimonials</h2>
-                            <hr class="heading-line" />
-                        </div><!-- end page-heading -->
-
-                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-                            <div class="carousel-inner text-center">
-                            
-                                <div class="item active">
-                                    <blockquote>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</blockquote>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star lightgrey"></i></span>
-                                    </div><!-- end rating -->
-                                    <small>Jhon Smith</small>
-                                </div><!-- end item -->
-                                
-                                <div class="item">
-                                    <blockquote>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</blockquote>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star lightgrey"></i></span>
-                                    </div><!-- end rating -->
-                                            
-                                    <small>Jhon Smith</small>
-                                </div><!-- end item -->
-                                
-                                <div class="item">
-                                    <blockquote>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum at, pro an eros perpetua ullamcorper.</blockquote>
-                                    <div class="rating">
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star orange"></i></span>
-                                        <span><i class="fa fa-star lightgrey"></i></span>
-                                    </div><!-- end rating -->
-                                    
-                                    <small>Jhon Smith</small>
-                                </div><!-- end item -->
-                                
-                            </div><!-- end carousel-inner -->
-                            
-                            <ol class="carousel-indicators">
-                                <li data-target="#quote-carousel" data-slide-to="0" class="active"><img src="images/client-1.jpg" class="img-responsive"  alt="client-img">
-                                </li>
-                                <li data-target="#quote-carousel" data-slide-to="1"><img src="images/client-2.jpg" class="img-responsive"  alt="client-img">
-                                </li>
-                                <li data-target="#quote-carousel" data-slide-to="2"><img src="images/client-3.jpg" class="img-responsive"  alt="client-img">
-                                </li>
-                            </ol>
-        
-                        </div><!-- end quote-carousel -->
+                        <h2>{{setting('site.admin_video_title')}}</h2>
+                        <p>{{setting('site.admin_video_description')}}</p>
+                        
+                        <a href="{{setting('site.admin_video')}}" class="popup-youtube" id="play-button"><span><i class="fa fa-play"></i></span></a>
                     </div><!-- end columns -->
                 </div><!-- end row -->
             </div><!-- end container -->
-        </section><!-- end testimonials --> 
-                
-        
+        </section><!-- end video-banner -->
                
         
         
@@ -820,13 +767,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <h2>Subscribe Our Newsletter</h2>
-                        <p>Subscibe to receive our interesting updates</p>  
-                        <form>
+                        <h2>INSCRIVEZ-VOUS A NOTRE NEWSLETTER</h2>
+                        <p>Abonnez-vous pour recevoir nos mises à jour intéressantes</p>  
+                        <form method="post" action="{{route('newsletter.store')}}">
+                            {{csrf_field()}}
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="email" class="form-control input-lg" placeholder="Enter your email address" required/>
-                                    <span class="input-group-btn"><button class="btn btn-lg"><i class="fa fa-envelope"></i></button></span>
+                                    <input type="email" name="email" class="form-control input-lg" placeholder="Entrez votre adresse email" required/>
+                                    <span class="input-group-btn"><button type="submit" class="btn btn-lg"><i class="fa fa-envelope"></i></button></span>
                                 </div>
                             </div>
                         </form>

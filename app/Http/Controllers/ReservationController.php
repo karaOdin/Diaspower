@@ -8,6 +8,7 @@ use DateTime;
 use Auth;
 use DB;
 use Validator;
+
 class ReservationController extends Controller
 {
     /**

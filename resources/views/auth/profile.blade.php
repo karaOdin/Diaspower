@@ -12,10 +12,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">My Account</h1>
+                    	<h1 class="page-title">Mon compte</h1>
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">My Account</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">Mon compte</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -31,8 +31,8 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         	<div class="dashboard-heading">
                                 <h2>Dias <span>Power</span></h2>
-                                <p>Hi <strong style="text-transform: uppercase;">{{Auth::user()->name}}</strong>, Welcome to Diaspower!</p>
-                                <p>All your trips booked with us will appear here and you'll be able to manage everything!</p>
+                                <p><strong style="text-transform: uppercase;">{{Auth::user()->name}}</strong>, Bienvenue chez Diaspower!</p>
+                                <p>Tous vos voyages réservés avec nous apparaîtront ici et vous pourrez tout gérer!</p>
                             </div><!-- end dashboard-heading -->
                             
                             <div class="dashboard-wrapper">
@@ -42,16 +42,16 @@
                                 		<ul class="nav nav-tabs nav-stacked text-center">
                                     		
                                         	<li class="active"><a href="{{route('profile.show')}}"><span><i class="fa fa-user"></i></span>Profile</a></li>
-                                            <li><a href="{{route('reservation.index')}}"><span><i class="fa fa-briefcase"></i></span>My reservations</a></li>
+                                            <li><a href="{{route('reservation.index')}}"><span><i class="fa fa-briefcase"></i></span>Mes réservations</a></li>
                                             
                                            
                                         </ul>
                                     </div><!-- end columns -->
                                     
                                     <div class="col-xs-12 col-sm-10 col-md-10 dashboard-content user-profile">
-                                		<h2 class="dash-content-title">My Profile</h2>
+                                		<h2 class="dash-content-title">Mon compte</h2>
                                         <div class="panel panel-default">
-                                            <div class="panel-heading"><h4>Profile Details</h4></div>
+                                            <div class="panel-heading"><h4>Détails du profil</h4></div>
                                             <div class="panel-body">
                                             	<div class="row">
                                                 	<div class="col-sm-5 col-md-4 user-img">
@@ -60,13 +60,13 @@
                                                     
                                                     <div class="col-sm-7 col-md-8  user-detail">
                                                         <ul class="list-unstyled">
-                                                            <li><span>Name:</span> {{Auth::user()->name}}</li>
+                                                            <li><span>Nom:</span> {{Auth::user()->name}}</li>
                                                             <li><span>Email:</span> {{Auth::user()->email}}</li>
                                                             <li><span>Phone:</span> {{Auth::user()->phone}}</li>
-                                                            <li><span>Address:</span> {{Auth::user()->adress}}</li>
-                                                            <li><span>Citys:</span> {{Auth::user()->city}}</li>
+                                                            <li><span>Adresse:</span> {{Auth::user()->adress}}</li>
+                                                            <li><span>Ville:</span> {{Auth::user()->city}}</li>
                                                         </ul>
-                                                        <button class="btn" data-toggle="modal" data-target="#edit-profile">Edit Profile</button>
+                                                        <button class="btn" data-toggle="modal" data-target="#edit-profile">Editer le profil</button>
                                                    	</div><!-- end columns -->
                                                     
                                                     
@@ -90,8 +90,8 @@
             <div class="container">
                 <div class="row">
                 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <h2>Subscribe Our Newsletter</h2>
-                        <p>Subscibe to receive our interesting updates</p>	
+                        <h2>Abonnez-vous à notre newsletter</h2>
+                        <p>Abonnez-vous pour recevoir nos mises à jour intéressantes</p>	
                         <form>
                             <div class="form-group">
                                 <div class="input-group">
@@ -110,7 +110,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Edit Profile</h3>
+                        <h3 class="modal-title">Editer le profil</h3>
                     </div><!-- end modal-header -->
                     
                     <div class="modal-body">
@@ -119,8 +119,8 @@
                             {{ method_field('PATCH') }}
                         	
                             <div class="form-group">
-                        		<label>Your Name</label>
-                            	<input type="text" class="form-control  @error('name') is-invalid @enderror"  name="name" value="{{Auth::user()->name}}" />
+                        		<label>Votre nom</label>
+                            	<input type="text" class="form-control  @error('name') is-invalid @enderror"  name="name" value="{{Auth::user()->name}}" placeholder="Votre nom" />
 
                             		@error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -130,8 +130,8 @@
                             </div><!-- end form-group -->  
                                                   
                             <div class="form-group">
-                        		<label>Your Email</label>
-                            	<input type="email" class="form-control  @error('email') is-invalid @enderror"  name="email" value="{{Auth::user()->email}}"  placeholder="Email" />
+                        		<label>Votre email</label>
+                            	<input type="email" class="form-control  @error('email') is-invalid @enderror"  name="email" value="{{Auth::user()->email}}"  placeholder="Votre email" />
 
                             			@error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                             </div><!-- end form-group -->
                           
                             <div class="form-group">
-                        		<label>Your Phone</label>
+                        		<label>Votres Phone</label>
                             	<input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone" value="{{Auth::user()->phone}}"  placeholder="Phone Number" />
 
                             			@error('phone')
@@ -152,9 +152,14 @@
                             </div><!-- end form-group -->
 							
                             <div class="form-group">
-                        		<label>Your Country</label>
-                            	<input type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{Auth::user()->city}}"  placeholder="Country" />
-
+                        		<label>Votre ville</label>
+                                <?php $cities = \App\City::all(); ?>
+                                <select class="form-control" name="city_id">
+                                    @foreach($cities as $city)
+                                    <option value="{{$city->id}}">{{$city->city}}</option>
+                                    @endforeach
+                                </select>
+                            	
                             			@error('city')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -163,7 +168,7 @@
                             </div><!-- end form-group -->
                             
                             <div class="form-group">
-                        		<label>Your Address</label>
+                        		<label>Votre adresse</label>
                             	<input type="text" class="form-control  @error('adress') is-invalid @enderror" name="adress" value="{{Auth::user()->adress}}"  placeholder="Address" />
 
                             			@error('adress')
@@ -173,7 +178,7 @@
                                         @enderror
                             </div><!-- end form-group -->
                             
-                            <button type="submit" class="btn btn-orange">Save Changes</button>
+                            <button type="submit" class="btn btn-orange">Sauvegarder</button>
                         </form>
                     </div><!-- end modal-bpdy -->
                 </div><!-- end modal-content -->

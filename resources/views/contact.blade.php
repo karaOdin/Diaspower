@@ -46,7 +46,7 @@
                                     	<span class="border-shape-top"></span>                      
  						        		<span><i class="fa fa-envelope"></i></span>
                                         <h4>Écrivez-nous à</h4>
-                                        <p>{{setting('general-info.admin_email')}}</p>
+                                        <p><a href="mailto:{{setting('general-info.admin_email')}}">{{setting('general-info.admin_email')}}</a></p>
                                         <span class="border-shape-bot"></span>
                                 	</div><!-- end contact-block-2 -->
                                 </div><!-- end columns -->
@@ -56,7 +56,7 @@
                                     	<span class="border-shape-top"></span>               
  						        		<span><i class="fa fa-phone"></i></span>
                                         <h4>Appelez-nous au</h4>
-                                        <p>{{setting('general-info.admin_tel')}}</p>
+                                        <p><a href="tel:{{setting('general-info.admin_tel')}}">{{setting('general-info.admin_tel')}}</a></p>
                                         <span class="border-shape-bot"></span>
                                 	</div><!-- end contact-block-2 -->
                                 </div><!-- end columns -->

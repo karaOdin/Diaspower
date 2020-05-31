@@ -5,10 +5,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">Car Search Result</h1>
+                    	<h1 class="page-title">Résultat de recherche de voiture </h1>
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Car Search Result</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">Résultat de recherche de voiture <</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -24,7 +24,7 @@
                         
                     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-side">
                         	<div class="page-search-form">
-                            	<h2>Search the <span>Car <i class="fa fa-car"></i></span></h2>
+                            	<h2>Cherche le <span>Car <i class="fa fa-car"></i></span></h2>
                                 
                                 <form method="post" action="/filter" class="pg-search-form">
                                 	{{ csrf_field() }} 

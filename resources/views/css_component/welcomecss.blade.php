@@ -24,3 +24,4 @@
         
         <!-- Magnific Gallery -->
         <link rel="stylesheet" href="/css/magnific-popup.css">
+        <link rel="stylesheet" href="css/egg-blue.css">

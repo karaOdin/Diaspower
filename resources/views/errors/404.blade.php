@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>404 Not Found</title>
+        <title>404 introuvable</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -19,10 +19,16 @@
         <!-- Custom Stylesheets -->	
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" id="cpswitch" href="/css/orange.css">
+        <link rel="stylesheet" href="/css/egg-blue.css">
         <link rel="stylesheet" href="/css/responsive.css">
         
         <!-- Color Panel -->
         <link rel="stylesheet" href="/css/jquery.colorpanel.css">
+        <style type="text/css">
+            .error-page-2-circle h2{
+                background-color: #00cccc;
+            }
+        </style>
     </head>
     
     
@@ -47,7 +53,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="full-page-title visible-xs visible-sm">
-                                    <h3 class="company-name"><span><i class="fa fa-plane"></i>Star</span>Travels</h3>
+                                    <h3 class="company-name"><img src="/storage/{{setting('site.logo')}}"><span>Dias</span>Power</h3>
                                 </div><!-- end full-page-title -->
                                         
                                 <div class="row">
@@ -58,13 +64,13 @@
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 error-page-2-text">
                                         <div class="full-page-title visible-md visible-lg">
-                                            <h3 class="company-name text-left"><span><i class="fa fa-plane"></i>Star</span>Travels</h3>
+                                            <h3 class="company-name text-left"><img src="/storage/{{setting('site.logo')}}" style="margin-right: 15px"><span>Dias</span>Power</h3>
                                         </div><!-- end full-page-title -->
                                         
-                                        <h2>Something went wrong !</h2>
-                                        <p>We are sorry but it appears that the page you are looking for could not be found. We are working on it and we will get it fixed as soon as possible.</p>
-                                        <p> You can go back to the Main Page by clicking the button.</p>
-                                        <a href="{{ url()->previous() }}" class="btn btn-orange">Go Back</a>
+                                        <h2>Quelque chose a mal tourné! !</h2>
+                                        <p> Nous sommes désolés mais il semble que la page que vous recherchez est introuvable. Nous y travaillons et nous le réparerons dès que possible.</p>
+                                        <p>Vous pouvez revenir à la page principale en cliquant sur le bouton.</p>
+                                        <a href="{{ url()->previous() }}" class="btn btn-orange">Retourner</a>
                                     </div>
                                 </div>
                             </div><!-- end columns -->

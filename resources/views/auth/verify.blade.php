@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Diaspower | Verify</title>
+        <title>Diaspower | Vérifier</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -52,24 +52,22 @@
                             </div><!-- end full-page-title -->
                             
                             <div class="custom-form custom-form-fields">
-                                <h4>{{ __('Verify Your Email Address') }}</h4>
+                                <h4>Vérifiez votre adresse e-mail</h4>
 
                                     <div class="card-body">
                                         @if (session('resent'))
                                             <div class="alert alert-success" role="alert">
-                                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                                Un nouveau lien de vérification a été envoyé à votre adresse e-mail.
                                             </div>
                                         @endif
 
-                                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                                        {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                                        Avant de continuer, veuillez vérifier votre e-mail pour un lien de vérification.
+                                        Si vous n'avez pas reçu l'e-mail <a href="{{ route('verification.resend') }}">cliquez ici pour en demander un autre</a>.
                                     </div>
                                </div><!-- end custom-form -->
-                               <div class="full-page-title">
-                                   <p style="color: #fff">Lorem ipsum dolor sit amet, conse adipiscing elit. Curabitur metus felis, venenatis eu ultricies vel, vehicula eu urna. Phasellus eget augue id est fringilla feugiat id a tellus. Sed hendrerit quam sed ante euismod posuere ultricies. </p>
-                               </div>
+                              <div style="height: 80px"></div>
                             
-                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')</p>
+                            <p class="full-page-copyright">© {{ date('Y') }} {{ config('app.name') }}. @lang('Tous les droits sont réservés.')</p>
                         </div><!-- end columns -->
                     </div><!-- end row -->
                 </div><!-- end container -->

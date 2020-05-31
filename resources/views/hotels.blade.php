@@ -1,14 +1,30 @@
 @extends('layouts.app')
+@section('title','Hôtels')
 @section('content')
+        @if(session()->has('message'))
+          <script>
+
+                var type = "{{Session::get('alert-type','success')}}"
+                 if(type == 'success')
+                {
+                    toastr.success("{{ Session::get('message') }}");
+                }
+                else
+                {
+                    toastr.error("{{Session::get('message')}}");
+                }
+            
+          </script>
+        @endif
  <!--=================== PAGE-COVER =================-->
         <section class="page-cover" id="cover-hotel-grid-list">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                    	<h1 class="page-title">Hotel Grid Left Sidebar</h1>
+                    	<h1 class="page-title">H&ocirc;tels</h1>
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Hotel Grid Left Sidebar</li>
+                            <li><a href="/">Accueil</a></li>
+                            <li class="active">H&ocirc;tels</li>
                         </ul>
                     </div><!-- end columns -->
                 </div><!-- end row -->
@@ -25,14 +41,14 @@
                         <div class="col-xs-12 col-sm-12 col-md-3 side-bar left-side-bar">
                                         
                             <div class="side-bar-block filter-block">
-                                <h3>Sort By Filter</h3>
-                                <p>Find your dream flights today</p>
+                                <h3>Trier par filtre</h3>
+                                <p>Trouvez votre h&ocirc;tel aujourd'hui</p>
                                 
                                 <div class="panels-group">
                                     
                                     <div class="panel panel-default">
                                         <div class="panel-heading">					
-                                            <a href="#panel-1" data-toggle="collapse" >Select Category <span><i class="fa fa-angle-down"></i></span></a>
+                                            <a href="#panel-1" data-toggle="collapse" >Choisir une categorie <span><i class="fa fa-angle-down"></i></span></a>
                                         </div><!-- end panel-heading -->
                                         
                                         <div id="panel-1" class="panel-collapse collapse">
@@ -131,16 +147,7 @@
                                     </div><!-- end side-bar-block -->
                                 </div><!-- end columns -->
                                 
-                                <div class="col-xs-12 col-sm-6 col-md-12">    
-                                    <div class="side-bar-block support-block">
-                                        <h3>Need Help</h3>
-                                        <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.</p>
-                                        <div class="support-contact">
-                                            <span><i class="fa fa-phone"></i></span>
-                                            <p>+1 123 1234567</p>
-                                        </div><!-- end support-contact -->
-                                    </div><!-- end side-bar-block -->
-                                </div><!-- end columns -->
+                                @include('component.help')
                                 
                             </div><!-- end row -->
                         </div><!-- end columns -->
@@ -148,15 +155,17 @@
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side">
                             <div class="row">
                             
+                                @foreach($hotels as $hotel)
+
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block h-grid-block">
                                     	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-1.jpg" class="img-responsive" alt="hotel-img" />
+                                        	<a href="{{route('hotels.show',$hotel->slug)}}">
+                                    			<img src="/storage/{{$hotel->image}}" class="img-responsive" alt="hotel-img" />
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
+                                                    <li class="price">@convert($hotel->pricePerDay) DZD<span class="divider">|</span><span class="pkg">Par Nuit</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     	</div><!-- end h-grid-img -->
@@ -170,175 +179,17 @@
                                                 <span><i class="fa fa-star lightgrey"></i></span>
                                             </div><!-- end rating -->
                                             
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
+                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{$hotel->name}}</a></h3>
+                                            <p class="block-minor">From: {{$hotel->city->city}}</p>
+                                            <p>{!! str_limit($hotel->description, 100) !!} </p>
                                             <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
+                                            	<a href="{{route('hotels.show',$hotel->slug)}}" class="btn btn-orange btn-block btn-lg">Voir plus</a>
                                             </div><!-- end grid-btn -->
                                          </div><!-- end h-grid-info -->
                                     </div><!-- end h-grid-block -->
                                 </div><!-- end columns -->
                                 
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block h-grid-block">
-                                    	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-2.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end h-grid-img -->
-                                        
-                                         <div class="block-info h-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
-                                            <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end h-grid-info -->
-                                    </div><!-- end h-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block h-grid-block">
-                                    	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-3.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end h-grid-img -->
-                                        
-                                         <div class="block-info h-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
-                                            <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end h-grid-info -->
-                                    </div><!-- end h-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block h-grid-block">
-                                    	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-4.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end h-grid-img -->
-                                        
-                                         <div class="block-info h-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
-                                            <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end h-grid-info -->
-                                    </div><!-- end h-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block h-grid-block">
-                                    	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-5.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end h-grid-img -->
-                                        
-                                         <div class="block-info h-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
-                                            <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end h-grid-info -->
-                                    </div><!-- end h-grid-block -->
-                                </div><!-- end columns -->
-                                
-                                <div class="col-sm-6 col-md-6 col-lg-4">
-                                    <div class="grid-block main-block h-grid-block">
-                                    	<div class="main-img h-grid-img">
-                                        	<a href="hotel-detail-left-sidebar.html">
-                                    			<img src="images/hotel-grid-6.jpg" class="img-responsive" alt="hotel-img" />
-                                            </a>
-                                            <div class="main-mask">
-                                                <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">$568.00<span class="divider">|</span><span class="pkg">Avg/Night</span></li>
-                                                </ul>
-                                            </div><!-- end main-mask -->
-                                    	</div><!-- end h-grid-img -->
-                                        
-                                         <div class="block-info h-grid-info">
-                                         	<div class="rating">
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star orange"></i></span>
-                                                <span><i class="fa fa-star lightgrey"></i></span>
-                                            </div><!-- end rating -->
-                                            
-                                         	<h3 class="block-title"><a href="hotel-detail-left-sidebar.html">Herta Berlin Hotel</a></h3>
-                                            <p class="block-minor">From: Scotland</p>
-                                            <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei </p>
-                                            <div class="grid-btn">
-                                            	<a href="hotel-detail-left-sidebar.html" class="btn btn-orange btn-block btn-lg">View More</a>
-                                            </div><!-- end grid-btn -->
-                                         </div><!-- end h-grid-info -->
-                                    </div><!-- end h-grid-block -->
-                                </div><!-- end columns -->
+                                @endforeach
                                 
                             </div><!-- end row -->
                             
